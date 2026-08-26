@@ -75,7 +75,7 @@ const localSeoPackages = [
         period: '/month',
         label: 'For small local businesses',
         bestFor: 'Best for one-location businesses targeting one main city or service area.',
-        timeline: 'Recommended timeline: 3 months minimum',
+        timeline: 'Recommended timeline: 6-months minimum',
         scope: 'Covers 1 GBP location and up to 5 service pages',
         note:
             'City/service landing pages are not included by default. Add SEO landing pages for $100/page if needed.',
@@ -145,7 +145,7 @@ const ecommerceSeoPackages = [
         label: 'For small ecommerce stores',
         bestFor:
             'Best for small Shopify, WooCommerce, or ecommerce stores that need SEO foundations.',
-        timeline: 'Recommended timeline: 3 months minimum',
+        timeline: 'Recommended timeline: 6-months minimum',
         scope: 'Focuses on selected priority collections, categories, and products',
         note:
             'Bulk product SEO, advanced technical fixes, or large-scale collection copy are not included by default.',
