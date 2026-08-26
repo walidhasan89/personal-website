@@ -14,7 +14,7 @@ const sections = [
     title: '1. Who We Are',
     body: [
       'This website is operated by Walid Hasan, a digital growth consultant providing services related to web design, SEO, analytics, conversion optimization, lead generation, website audits, and digital strategy.',
-      'For privacy-related questions, you can contact: walid@inoviqa.com',
+      'For privacy-related questions, you can contact: hello@walidhasan.com',
     ],
   },
   {
@@ -95,7 +95,7 @@ const sections = [
     title: '12. Your Rights',
     body: [
       'Depending on your location, you may have rights regarding your personal information, including the right to request access, correction, deletion, object to certain processing, withdraw consent where applicable, or request information about how your data is used.',
-      'To make a request, contact me at: walid@inoviqa.com',
+      'To make a request, contact me at: hello@walidhasan.com',
     ],
   },
   {
@@ -120,7 +120,7 @@ const sections = [
   {
     title: '16. Contact Information',
     body: [
-      'For questions about this Privacy Policy or how your information is handled, contact Walid Hasan at walid@inoviqa.com.',
+      'For questions about this Privacy Policy or how your information is handled, contact Walid Hasan at hello@walidhasan.com.',
     ],
   },
 ]
@@ -253,7 +253,7 @@ export default function PrivacyPolicyPage() {
                 <h3>Contact me about this Privacy Policy</h3>
               </div>
 
-              <a href="mailto:walid@inoviqa.com" className="btn btn-brand">
+              <a href="mailto:hello@walidhasan.com" className="btn btn-brand">
                 Email Me <span className="arrow">→</span>
               </a>
             </div>

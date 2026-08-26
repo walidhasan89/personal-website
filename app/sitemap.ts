@@ -12,7 +12,7 @@ import { SITE_URL } from '@/lib/schema'
  * change). Update the constant below — or a specific route's date — when
  * that page's content actually changes.
  */
-const LAST_REVIEWED = '2026-08-08'
+const LAST_REVIEWED = '2026-08-26'
 
 type Route = {
   path: string

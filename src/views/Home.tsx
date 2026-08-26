@@ -4,6 +4,7 @@ import { useState, useRef } from 'react'
 import Link from 'next/link'
 import JsonLd from '@/components/JsonLd'
 import { faqPageSchema } from '@/lib/schema'
+import { getScreenshot, SCREENSHOT_FALLBACK } from '@/lib/screenshot'
 import { useScrollReveal, useCounter } from '@/hooks/useAnimations'
 
 // ─── DATA ───
@@ -14,7 +15,6 @@ const TRUST_CHIPS = [
   { icon: '🌍', text: '30+ Countries Served' },
   { icon: '🧩', text: 'Chrome Extension Creator' },
   { icon: '👥', text: '200+ Happy Customers' },
-  { icon: '📈', text: 'World Domination 23%' },
   { icon: '🔧', text: 'Free SEO Tools Builder' },
 ]
 
@@ -40,16 +40,16 @@ const RESULTS = [
   { num: '500+', label: 'Projects Delivered' },
   { num: '200+', label: 'Happy Customers' },
   { num: '30+', label: 'Countries Served' },
-  { num: '23%', label: 'World Domination' },
+  { num: '7+', label: 'Years Experience' },
 ]
 
 const PORTFOLIO = [
-  { url: 'https://inoviqa.com/', img: 'https://api.microlink.io/?url=https://inoviqa.com&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=false&viewport.width=1280&viewport.height=800', title: 'Inoviqa LLC — Agency Website', desc: 'Premium digital agency website with conversion-focused design, service architecture, and trust-building authority positioning.', tags: ['WordPress', 'Agency', 'SEO'] },
-  { url: 'https://rfqautopilot.com/', img: 'https://api.microlink.io/?url=https://rfqautopilot.com&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=false&viewport.width=1280&viewport.height=800', title: 'RFQ AutoPilot — SaaS Product', desc: 'SaaS landing page for procurement automation tool with product showcase, feature highlights, and conversion funnel.', tags: ['SaaS', 'Landing Page', 'Product'] },
-  { url: 'https://enginious.ae/', img: 'https://api.microlink.io/?url=https://enginious.ae&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=false&viewport.width=1280&viewport.height=800', title: 'Enginious — Engineering Firm', desc: 'Corporate web presence for a UAE-based engineering company with professional design and service-oriented architecture.', tags: ['Corporate', 'WordPress', 'UAE'] },
-  { url: 'https://jointalently.com/', img: 'https://api.microlink.io/?url=https://jointalently.com&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=false&viewport.width=1280&viewport.height=800', title: 'Talently — HR & Recruitment', desc: 'Modern recruitment platform with clean UX, applicant flows, and conversion-optimized job listing architecture.', tags: ['Platform', 'HR Tech', 'CRO'] },
-  { url: 'https://replychief.com/', img: 'https://api.microlink.io/?url=https://replychief.com&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=false&viewport.width=1280&viewport.height=800', title: 'ReplyChief — Communication Tool', desc: 'SaaS product site for an intelligent reply management system with feature showcase and user onboarding flow.', tags: ['SaaS', 'Chrome Extension', 'Product'] },
-  { url: 'https://silkwaterswindowsandeaves.com/', img: 'https://api.microlink.io/?url=https://silkwaterswindowsandeaves.com&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=false&viewport.width=1280&viewport.height=800', title: 'Silk Waters — Local Business', desc: 'Local service business website with local SEO, Google Business Profile optimization, and lead generation system.', tags: ['Local SEO', 'GBP', 'Lead Gen'] },
+  { url: 'https://inoviqa.com/', title: 'Inoviqa LLC — Agency Website', desc: 'Premium digital agency website with conversion-focused design, service architecture, and trust-building authority positioning.', tags: ['WordPress', 'Agency', 'SEO'] },
+  { url: 'https://rfqautopilot.com/', title: 'RFQ AutoPilot — SaaS Product', desc: 'SaaS landing page for procurement automation tool with product showcase, feature highlights, and conversion funnel.', tags: ['SaaS', 'Landing Page', 'Product'] },
+  { url: 'https://enginious.ae/', title: 'Enginious — Engineering Firm', desc: 'Corporate web presence for a UAE-based engineering company with professional design and service-oriented architecture.', tags: ['Corporate', 'WordPress', 'UAE'] },
+  { url: 'https://jointalently.com/', title: 'Talently — HR & Recruitment', desc: 'Modern recruitment platform with clean UX, applicant flows, and conversion-optimized job listing architecture.', tags: ['Platform', 'HR Tech', 'CRO'] },
+  { url: 'https://replychief.com/', title: 'ReplyChief — Communication Tool', desc: 'SaaS product site for an intelligent reply management system with feature showcase and user onboarding flow.', tags: ['SaaS', 'Chrome Extension', 'Product'] },
+  { url: 'https://silkwaterswindowsandeaves.com/', title: 'Silk Waters — Local Business', desc: 'Local service business website with local SEO, Google Business Profile optimization, and lead generation system.', tags: ['Local SEO', 'GBP', 'Lead Gen'] },
 ]
 
 const PRODUCTS = [
@@ -57,15 +57,6 @@ const PRODUCTS = [
   { badge: 'Chrome Extension', title: 'Shopify AdminPalette', desc: 'Quick-access commands that enhance Shopify admin productivity with keyboard shortcuts and rapid navigation tools for store managers.', url: 'https://adminpalette.com/', linkText: 'Visit AdminPalette' },
   { badge: 'Chrome Extension', title: 'RFQ AutoPilot', desc: 'Automates supplier RFQ processes for procurement and sourcing teams — reducing manual effort and accelerating response times.', url: 'https://rfqautopilot.com/', linkText: 'Visit RFQ AutoPilot' },
   { badge: 'New Launch', title: 'Site Audit Extension', desc: 'Instant website SEO auditing right from Chrome — analyze on-page SEO, meta tags, headings, performance issues, and technical health in one click.', url: 'https://chromewebstore.google.com/detail/bpopbhodmhhbedeepfkmifaciaafjbgn', linkText: 'View on Chrome Store' },
-]
-
-const TESTIMONIALS = [
-  { text: 'Walid completely transformed our online presence. Our leads tripled within two months. He doesn\'t just build websites — he builds business growth engines.', author: 'David R.', role: 'CEO, Tech Startup — USA' },
-  { text: 'Best SEO consultant I\'ve ever worked with. He got our Google Business Profile ranking #1 in our local market. Professional, strategic, and delivers results.', author: 'Sarah M.', role: 'Business Owner — UK' },
-  { text: 'Working with Walid felt like having a digital growth partner, not just a freelancer. His strategic thinking sets him apart from anyone else I\'ve hired.', author: 'James K.', role: 'E-Commerce Founder — Australia' },
-  { text: 'Our website went from generating zero leads to 40+ qualified inquiries a month. Walid\'s SEO and conversion strategy changed our entire business trajectory.', author: 'Ahmed N.', role: 'Managing Director — UAE' },
-  { text: 'I\'ve hired many developers on Fiverr. Walid is the only one I kept coming back to. His attention to detail and business understanding is exceptional.', author: 'Lisa T.', role: 'Marketing Manager — Canada' },
-  { text: 'From local SEO setup to full analytics tracking, Walid delivered everything on time and beyond expectations. Highly recommend for any serious business.', author: 'Michael B.', role: 'Founder, Service Company — Germany' },
 ]
 
 const FAQS = [
@@ -106,7 +97,18 @@ function PortfolioCard({ item }: { item: typeof PORTFOLIO[0] }) {
   return (
     <article className="pf-card reveal">
       <div className="pf-thumb">
-        <img src={item.img} alt={`Screenshot of the ${item.title} website`} loading="lazy" decoding="async" width={1280} height={800} />
+        <img
+          src={getScreenshot(item.url)}
+          alt={`Screenshot of the ${item.title} website`}
+          loading="lazy"
+          decoding="async"
+          width={1280}
+          height={800}
+          onError={(e) => {
+            e.currentTarget.onerror = null
+            e.currentTarget.src = SCREENSHOT_FALLBACK
+          }}
+        />
         <div className="pf-overlay"><a href={item.url} target="_blank" rel="noopener noreferrer" className="pf-overlay-btn">View Live →</a></div>
       </div>
       <div className="pf-info">
@@ -141,7 +143,6 @@ export default function HomePage() {
     results: useScrollReveal(),
     portfolio: useScrollReveal(),
     products: useScrollReveal(),
-    testimonials: useScrollReveal(),
     agency: useScrollReveal(),
     process: useScrollReveal(),
     faq: useScrollReveal(),
@@ -185,7 +186,7 @@ export default function HomePage() {
               </div>
               <div className="float-card fc1">⚡ 500+ Projects Delivered</div>
               <div className="float-card fc2">★ Agency Founder</div>
-              <div className="float-card fc3">🌍 World Domination 23%</div>
+              <div className="float-card fc3">🌍 30+ Countries Served</div>
             </div>
           </div>
         </div>
@@ -289,26 +290,6 @@ export default function HomePage() {
           </div>
           <div style={{ textAlign: 'center', marginTop: 28 }} className="reveal">
             <Link href="/tools" className="btn btn-ghost">🔧 Explore All Tools <span className="arrow">→</span></Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section id="testimonials" ref={sectionRefs.testimonials} style={{ background: 'var(--bg-secondary)', padding: '110px 0' }}>
-        <div className="container">
-          <div className="sec-header center reveal">
-            <div className="sec-label">Client Voices</div>
-            <h2 className="sec-title">What My Clients <span className="text-gradient">Say</span></h2>
-          </div>
-          <div className="testi-grid stagger">
-            {TESTIMONIALS.map((t, i) => (
-              <article className="testi-card reveal" key={i}>
-                <div className="testi-stars">★★★★★</div>
-                <p className="testi-text">"{t.text}"</p>
-                <div className="testi-author">{t.author}</div>
-                <div className="testi-role">{t.role}</div>
-              </article>
-            ))}
           </div>
         </div>
       </section>

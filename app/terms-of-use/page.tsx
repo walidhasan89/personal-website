@@ -14,7 +14,7 @@ const sections = [
     title: '1. Website Owner',
     body: [
       'This website is operated by Walid Hasan, a digital growth consultant offering services related to web design, SEO, analytics, conversion optimization, lead generation, website audits, and digital strategy.',
-      'For questions, contact: walid@inoviqa.com',
+      'For questions, contact: hello@walidhasan.com',
     ],
   },
   {
@@ -140,7 +140,7 @@ const sections = [
   {
     title: '18. Contact Information',
     body: [
-      'For questions about these Terms of Use, contact Walid Hasan at walid@inoviqa.com.',
+      'For questions about these Terms of Use, contact Walid Hasan at hello@walidhasan.com.',
     ],
   },
 ]
@@ -286,7 +286,7 @@ export default function TermsOfUsePage() {
                 <h3>Contact me before starting a project</h3>
               </div>
 
-              <a href="mailto:walid@inoviqa.com" className="btn btn-brand">
+              <a href="mailto:hello@walidhasan.com" className="btn btn-brand">
                 Email Me <span className="arrow">→</span>
               </a>
             </div>

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import JsonLd from '@/components/JsonLd'
 import { softwareApplicationSchema } from '@/lib/schema'
+import { getScreenshot, SCREENSHOT_FALLBACK } from '@/lib/screenshot'
 import { useScrollReveal } from '@/hooks/useAnimations'
 
 const css = `
@@ -73,8 +74,6 @@ const css = `
 @media(max-width:768px){.tools-hero{padding:130px 0 60px}.ft-features{grid-template-columns:repeat(2,1fr)}.ps-features{grid-template-columns:1fr}}
 `
 
-function getScreenshot(url:string){return`https://api.microlink.io/?url=${encodeURIComponent(url.replace(/\/$/,''))}&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=false&viewport.width=1280&viewport.height=800`}
-
 const PRODUCTS = [
   {id:'replychief',badge:'Chrome Extension',badgeType:'ext',title:'ReplyChief',tagline:'Respond faster. Stay consistent. Save hours every week.',url:'https://replychief.com/',screenshot:getScreenshot('https://replychief.com'),desc:'ReplyChief streamlines communication workflows by giving professionals a centralized system for managing replies.',features:['Template library with categories','One-click reply insertion','Cross-platform compatibility','Custom shortcut triggers','Team sharing capabilities','Variable/personalization support'],metrics:[{num:'10x',label:'Faster Replies'},{num:'5+',label:'Hours Saved/Week'},{num:'500+',label:'Users'},{num:'4.8★',label:'Rating'}]},
   {id:'adminpalette',badge:'Chrome Extension',badgeType:'ext',title:'Shopify AdminPalette',tagline:'Command your Shopify store at the speed of thought.',url:'https://adminpalette.com/',screenshot:getScreenshot('https://adminpalette.com'),desc:'AdminPalette adds a powerful command palette to the Shopify admin — letting store owners navigate with keyboard shortcuts.',features:['Cmd+K command palette','Instant product & order search','Quick navigation to any page','Custom keyboard shortcuts','Recent actions history','Works on any Shopify plan'],metrics:[{num:'3x',label:'Faster Navigation'},{num:'Cmd+K',label:'Activation'},{num:'1000+',label:'Installs'},{num:'5.0★',label:'Rating'}],reverse:true},
@@ -134,6 +133,10 @@ function ProductSection({ product: p }: { product: (typeof PRODUCTS)[number] }) 
                 loading="lazy"
                 width={1280}
                 height={800}
+                onError={(e) => {
+                  e.currentTarget.onerror = null
+                  e.currentTarget.src = SCREENSHOT_FALLBACK
+                }}
               />
               <div className={`ps-screenshot-badge ${p.badgeType}`}>
                 {p.badgeType === 'ext' ? 'Chrome Extension' : 'New Launch'}

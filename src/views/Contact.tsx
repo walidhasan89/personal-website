@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import JsonLd from '@/components/JsonLd'
 import { faqPageSchema } from '@/lib/schema'
+import { SOCIAL_LINKS } from '@/lib/social'
 import { useScrollReveal } from '@/hooks/useAnimations'
 
 const css = `
@@ -136,45 +137,6 @@ export default function ContactPage() {
     }
   }
 
-  const socialLinks = [
-    {
-      label: 'LinkedIn',
-      short: 'in',
-      href: 'https://www.linkedin.com/in/walidhasan-riyad/',
-      className: 'social-linkedin',
-    },
-    {
-      label: 'Facebook',
-      short: 'fb',
-      href: 'https://www.facebook.com/iamwalidhasan',
-      className: 'social-facebook',
-    },
-    {
-      label: 'Instagram',
-      short: 'ig',
-      href: 'https://www.instagram.com/iamwalidhasan/',
-      className: 'social-instagram',
-    },
-    {
-      label: 'Behance',
-      short: 'be',
-      href: 'https://www.behance.net/walid_hasan',
-      className: 'social-behance',
-    },
-    {
-      label: 'YouTube',
-      short: 'yt',
-      href: 'https://www.youtube.com/@walidhasan-r',
-      className: 'social-youtube',
-    },
-    {
-      label: 'X',
-      short: 'x',
-      href: 'https://x.com/walidhasan_r',
-      className: 'social-x',
-    },
-  ]
-
   return (
     <>
       <JsonLd data={faqPageSchema(FAQS)} />
@@ -206,13 +168,13 @@ export default function ContactPage() {
                 <div className="ct-card"><div className="ct-card-icon">🕐</div><div className="ct-card-content"><h4>Working Hours</h4><p>Mon – Sat, 9 AM – 10 PM (GMT+6)</p></div></div>
               </div>
               <div className="ct-socials">
-                {socialLinks.map((social) => (
+                {SOCIAL_LINKS.map((social) => (
                   <a
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className={`ct-social ${social.className}`}
+                    className={`ct-social social-${social.key}`}
                     key={social.href}
                   >
                     {social.short}

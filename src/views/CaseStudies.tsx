@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Breadcrumbs from '@/components/Breadcrumbs'
+import { getScreenshot, SCREENSHOT_FALLBACK } from '@/lib/screenshot'
 import { useScrollReveal } from '@/hooks/useAnimations'
 
 const css = `
@@ -53,10 +54,6 @@ const css = `
 @media(max-width:1080px){.projects-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:768px){.cs-hero{padding:130px 0 60px}.projects-grid{grid-template-columns:1fr}}
 `
-
-function getScreenshot(url: string) {
-  return `https://api.microlink.io/?url=${encodeURIComponent(url.replace(/\/$/,''))}&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=false&viewport.width=1280&viewport.height=800`
-}
 
 const PROJECTS = [
   { url:'https://replychief.com/',name:'ReplyChief',industry:'SaaS / Productivity',cat:'product',tags:['SaaS','Chrome Extension','Product'],desc:'Smart reply management system for faster, consistent communication workflows.' },
@@ -128,7 +125,18 @@ function ProjectCard({ project, index }: { project: typeof PROJECTS[0]; index: n
   return (
     <article className={`project-card${visible ? ' visible' : ''}`} ref={ref} style={{ transitionDelay: `${(index % 6) * 0.08}s` }}>
       <div className="pc-thumb">
-        <img src={getScreenshot(project.url)} alt={`Screenshot of the ${project.name} website`} loading="lazy" decoding="async" width={1280} height={800} />
+        <img
+          src={getScreenshot(project.url)}
+          alt={`Screenshot of the ${project.name} website`}
+          loading="lazy"
+          decoding="async"
+          width={1280}
+          height={800}
+          onError={(e) => {
+            e.currentTarget.onerror = null
+            e.currentTarget.src = SCREENSHOT_FALLBACK
+          }}
+        />
         <div className="pc-overlay"><a href={project.url} target="_blank" rel="noopener noreferrer" className="pc-live-btn">View Live Site <span className="arrow">→</span></a></div>
         <div className={`pc-status ${project.cat === 'product' ? 'product' : 'live'}`}>{project.cat === 'product' ? 'Product' : 'Live'}</div>
       </div>

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useTheme } from '@/context/ThemeContext'
+import { SOCIAL_LINKS } from '@/lib/social'
 
 const navLinks = [
   { label: 'Home', href: '/' },
@@ -12,45 +13,6 @@ const navLinks = [
   { label: 'About', href: '/about' },
   { label: 'Tools', href: '/tools' },
   { label: 'Contact', href: '/contact' },
-]
-
-const socialLinks = [
-  {
-    label: 'LinkedIn',
-    short: 'in',
-    href: 'https://www.linkedin.com/in/walidhasan-riyad/',
-    className: 'mob-social-linkedin',
-  },
-  {
-    label: 'Facebook',
-    short: 'fb',
-    href: 'https://www.facebook.com/iamwalidhasan',
-    className: 'mob-social-facebook',
-  },
-  {
-    label: 'Instagram',
-    short: 'ig',
-    href: 'https://www.instagram.com/iamwalidhasan/',
-    className: 'mob-social-instagram',
-  },
-  {
-    label: 'Behance',
-    short: 'be',
-    href: 'https://www.behance.net/walid_hasan',
-    className: 'mob-social-behance',
-  },
-  {
-    label: 'YouTube',
-    short: 'yt',
-    href: 'https://www.youtube.com/@walidhasan-r',
-    className: 'mob-social-youtube',
-  },
-  {
-    label: 'X',
-    short: 'x',
-    href: 'https://x.com/walidhasan_r',
-    className: 'mob-social-x',
-  },
 ]
 
 export default function Navbar() {
@@ -210,11 +172,11 @@ export default function Navbar() {
           ))}
 
           <div className="mob-socials">
-            {socialLinks.map((social) => (
+            {SOCIAL_LINKS.map((social) => (
               <a
                 href={social.href}
                 aria-label={social.label}
-                className={`mob-social ${social.className}`}
+                className={`mob-social mob-social-${social.key}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 key={social.href}
