@@ -209,6 +209,16 @@ const ecommerceSeoPackages = [
     },
 ]
 
+const setupFeeIncludes = [
+    'Website and technical SEO audit',
+    'Google Business Profile audit',
+    'Keyword and search-intent research',
+    'Competitor research',
+    'Analytics and tracking review',
+    'Initial Local SEO strategy',
+    'Campaign onboarding',
+]
+
 const localSeoFaqs = [
     {
         q: 'How long does Local SEO take to show results?',
@@ -471,6 +481,52 @@ export default function PricingClient() {
                                 </Link>
                             </article>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="setup-fee-section">
+                <div className="container">
+                    <div className="setup-fee-grid">
+                        <div className="setup-fee-content">
+                            <div className="setup-fee-kicker">
+                                <span className="setup-fee-kicker-dot" />
+                                Before monthly work begins
+                            </div>
+
+                            <h2>
+                                One-time <span className="text-gradient">setup fee.</span>
+                            </h2>
+
+                            <div className="setup-fee-price">
+                                <strong>$199</strong>
+                                <span>once</span>
+                            </div>
+
+                            <p>
+                                The setup fee covers the research, auditing, tracking review,
+                                competitor analysis, and campaign preparation required before
+                                monthly work begins.
+                            </p>
+                        </div>
+
+                        <div className="setup-fee-card">
+                            <span className="setup-fee-corner setup-fee-corner-tl" aria-hidden="true" />
+                            <span className="setup-fee-corner setup-fee-corner-tr" aria-hidden="true" />
+                            <span className="setup-fee-corner setup-fee-corner-bl" aria-hidden="true" />
+                            <span className="setup-fee-corner setup-fee-corner-br" aria-hidden="true" />
+
+                            <span className="setup-fee-card-label">Setup Includes</span>
+
+                            <ul className="setup-fee-list">
+                                {setupFeeIncludes.map((item) => (
+                                    <li key={item}>
+                                        <span className="setup-fee-check">✓</span>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
