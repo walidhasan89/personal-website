@@ -96,7 +96,7 @@ const localSeoPackages = [
         label: 'For stronger local ranking',
         bestFor:
             'Best for local businesses targeting multiple services or nearby city/service keywords.',
-        timeline: 'Recommended timeline: 3–6 months',
+        timeline: 'Recommended timeline: 6-months minimum',
         scope: 'Covers 1–2 GBP locations and up to 10 service pages',
         note:
             'New city/service landing pages can be added for $100/page for active SEO clients.',
@@ -120,7 +120,7 @@ const localSeoPackages = [
         label: 'For competitive local markets',
         bestFor:
             'Best for competitive local niches, multi-service businesses, or stronger city-based visibility.',
-        timeline: 'Recommended timeline: 6 months+',
+        timeline: 'Recommended timeline: 6-months minimum',
         scope: 'Covers 2–3 GBP locations and up to 15 service pages',
         note:
             'Multi-location businesses, large city campaigns, or aggressive local SEO campaigns may require a custom quote.',
@@ -167,7 +167,7 @@ const ecommerceSeoPackages = [
         label: 'For category and product growth',
         bestFor:
             'Best for growing ecommerce stores that want stronger category, collection, and product rankings.',
-        timeline: 'Recommended timeline: 3–6 months',
+        timeline: 'Recommended timeline: 6-months minimum',
         scope:
             'Focuses on priority category architecture, selected product SEO, and technical improvements',
         note:
@@ -192,7 +192,7 @@ const ecommerceSeoPackages = [
         label: 'For larger competitive stores',
         bestFor:
             'Best for larger stores, competitive ecommerce niches, or stores with many collections/products.',
-        timeline: 'Recommended timeline: 6 months+',
+        timeline: 'Recommended timeline: 6-months minimum',
         scope: 'Focuses on advanced SEO strategy, technical structure, and ongoing ecommerce growth',
         note:
             'Large-scale product SEO, faceted navigation issues, advanced schema, and complex technical fixes may require a custom quote.',
