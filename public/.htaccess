@@ -1,0 +1,115 @@
+RewriteEngine On
+
+# ─────────────────────────────────────────────────────────────
+# 1. CANONICAL HOST / PROTOCOL
+# ─────────────────────────────────────────────────────────────
+
+# Force HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Force non-www version
+RewriteCond %{HTTP_HOST} ^www\.walidhasan\.com$ [NC]
+RewriteRule ^(.*)$ https://walidhasan.com/$1 [L,R=301]
+
+# ─────────────────────────────────────────────────────────────
+# 2. CANONICAL URL FORM (duplicate-content prevention)
+#
+# The Next.js export is configured with trailingSlash: false, so /about is
+# the canonical form. Without the two rules below the site served the same
+# page at up to three URLs:
+#   /about        200  (canonical)
+#   /about.html   200  (duplicate — the underlying file)
+#   /about/       404  (broken, but linkable from elsewhere)
+# Both are now 301'd to the canonical form so link equity consolidates and
+# crawlers do not have to rely on rel=canonical alone.
+# ─────────────────────────────────────────────────────────────
+
+# 2a. Redirect explicit .html requests to the extensionless URL.
+#     (Guarded by REDIRECT_STATUS so it only fires on real external
+#     requests, never on the internal rewrite performed in section 3.)
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [L,R=301]
+
+# 2b. Strip trailing slashes (except on the site root and on real
+#     directories, which must keep theirs — e.g. /seo-report-generator/).
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [L,R=301]
+
+# ─────────────────────────────────────────────────────────────
+# 3. SERVE THE STATIC EXPORT
+# ─────────────────────────────────────────────────────────────
+
+# Keep existing real files and folders working.
+# Important for /seo-report-generator/ and /contact-handler.php, which live
+# on the server outside the Next.js build.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Clean URLs for Next.js static export pages: /about -> /about.html
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+)$ $1.html [L]
+
+# Homepage
+RewriteRule ^$ index.html [L]
+
+# 404 fallback
+ErrorDocument 404 /404.html
+
+# ─────────────────────────────────────────────────────────────
+# 4. SECURITY HEADERS
+# ─────────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  # Limit access to powerful browser features this site does not use.
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+</IfModule>
+
+# ─────────────────────────────────────────────────────────────
+# 5. COMPRESSION
+# ─────────────────────────────────────────────────────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+# ─────────────────────────────────────────────────────────────
+# 6. BROWSER CACHING
+# ─────────────────────────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+
+  ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# Next.js emits content-hashed filenames under /_next/static/, so those are
+# safe to cache immutably for a year regardless of the rules above.
+<IfModule mod_headers.c>
+  <FilesMatch "^.*\.(js|css|woff2)$">
+    <If "%{REQUEST_URI} =~ m#^/_next/static/#">
+      Header set Cache-Control "public, max-age=31536000, immutable"
+    </If>
+  </FilesMatch>
+</IfModule>
+
+# ─────────────────────────────────────────────────────────────
+# 7. PROTECT HIDDEN FILES
+# ─────────────────────────────────────────────────────────────
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
