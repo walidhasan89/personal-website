@@ -494,15 +494,6 @@ export default function PricingClient() {
                                 Before monthly work begins
                             </div>
 
-                            <a
-                                href="https://buy.stripe.com/14A00kbbC2jL8l24jBfjG0b"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn btn-brand setup-fee-pay-btn"
-                            >
-                                Pay Now <span className="arrow">→</span>
-                            </a>
-
                             <h2>
                                 One-time <span className="text-gradient">setup fee.</span>
                             </h2>
