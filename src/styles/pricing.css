@@ -522,7 +522,13 @@
 }
 
 .setup-fee-pay-btn {
+  padding: 11px 24px;
+  font-size: 0.86rem;
   margin: 2px 0 26px;
+}
+
+.setup-fee-pay-btn-bottom {
+  margin: 24px 0 0;
 }
 
 .setup-fee-content h2 {

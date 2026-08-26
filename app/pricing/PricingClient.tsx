@@ -517,6 +517,15 @@ export default function PricingClient() {
                                 competitor analysis, and campaign preparation required before
                                 monthly work begins.
                             </p>
+
+                            <a
+                                href="https://buy.stripe.com/14A00kbbC2jL8l24jBfjG0b"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-brand setup-fee-pay-btn setup-fee-pay-btn-bottom"
+                            >
+                                Pay Now <span className="arrow">→</span>
+                            </a>
                         </div>
 
                         <div className="setup-fee-card">
