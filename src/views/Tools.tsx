@@ -44,13 +44,15 @@ const css = `
 .ps-metric-label{font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;font-weight:600}
 
 .free-tools{padding:110px 0;background:var(--bg-secondary)}
-.ft-card{max-width:800px;margin:0 auto;padding:48px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-lg);text-align:center;transition:all .5s}
+.free-tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;align-items:stretch}
+.ft-card{display:flex;flex-direction:column;padding:44px 40px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-lg);text-align:center;transition:all .5s}
 .ft-card:hover{border-color:var(--border-hover);box-shadow:var(--shadow-card)}
 .ft-icon{font-size:2.5rem;margin-bottom:16px}
-.ft-card h2{font-family:var(--font-heading);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-bottom:14px}
-.ft-card>p{font-size:.94rem;color:var(--text-secondary);line-height:1.85;margin-bottom:28px;max-width:560px;margin-left:auto;margin-right:auto}
-.ft-features{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px;text-align:left}
-.ft-feat{font-size:.82rem;color:var(--text-secondary);padding:10px;background:var(--bg-elevated);border-radius:var(--r-sm)}
+.ft-card h3{font-family:var(--font-heading);font-size:clamp(1.3rem,2.4vw,1.6rem);font-weight:700;margin-bottom:14px}
+.ft-card>p{font-size:.92rem;color:var(--text-secondary);line-height:1.8;margin-bottom:24px}
+.ft-features{flex:1;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:28px;text-align:left;align-content:start}
+.ft-feat{font-size:.8rem;color:var(--text-secondary);padding:10px;background:var(--bg-elevated);border-radius:var(--r-sm)}
+.ft-card>a{margin-top:auto}
 
 .wt-section{padding:110px 0;background:var(--bg-primary)}
 .wt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -70,8 +72,8 @@ const css = `
 .sec-title{font-family:var(--font-heading);font-size:clamp(1.8rem,3.4vw,2.5rem);font-weight:700;letter-spacing:-.5px;margin-bottom:14px;line-height:1.18}
 .sec-desc{font-size:1rem;color:var(--text-secondary);max-width:580px;margin:0 auto;line-height:1.8}
 
-@media(max-width:1080px){.ps-layout,.ps-layout.reverse{grid-template-columns:1fr;direction:ltr}.wt-grid{grid-template-columns:1fr}}
-@media(max-width:768px){.tools-hero{padding:130px 0 60px}.ft-features{grid-template-columns:repeat(2,1fr)}.ps-features{grid-template-columns:1fr}}
+@media(max-width:1080px){.ps-layout,.ps-layout.reverse{grid-template-columns:1fr;direction:ltr}.wt-grid,.free-tools-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.tools-hero{padding:130px 0 60px}.ft-card{padding:32px 24px}.ps-features{grid-template-columns:1fr}}
 `
 
 const PRODUCTS = [
@@ -90,7 +92,28 @@ const WHY_TOOLS = [
   {icon:'💡',title:'Free & Accessible',desc:'Core functionality is free for everyone. Premium features are priced fairly.'},
 ]
 
-const FREE_FEATURES = ['Instant SEO score','Meta tag analysis','Heading structure check','Image optimization report','Mobile-friendly test','Page speed insights','Downloadable PDF report','No signup required']
+const FREE_TOOLS = [
+  {
+    id: 'seo-report-generator',
+    icon: '🔧',
+    titlePrefix: 'Free SEO Report',
+    titleGradient: 'Generator',
+    desc: 'Get an instant, comprehensive SEO health report for any website — completely free, no signup required.',
+    features: ['Instant SEO score','Meta tag analysis','Heading structure check','Image optimization report','Mobile-friendly test','Page speed insights','Downloadable PDF report','No signup required'],
+    url: 'https://walidhasan.com/seo-report-generator/',
+    linkText: 'Try Free SEO Report Generator',
+  },
+  {
+    id: 'invoice-builder',
+    icon: '🧾',
+    titlePrefix: 'Free Invoice',
+    titleGradient: 'Builder',
+    desc: 'Create clean, professional invoices in minutes — completely free, no signup required.',
+    features: ['Professional invoice templates','Add unlimited line items','Automatic total calculation','Download or print as PDF','No signup required','Completely free'],
+    url: 'https://walidhasan.com/invoice-builder/',
+    linkText: 'Try Free Invoice Builder',
+  },
+]
 
 /**
  * One section per product. Extracted from an inline `PRODUCTS.map(...)` that
@@ -191,7 +214,7 @@ export default function ToolsPage() {
           <p className="tools-hero-sub reveal">I don't just build websites for clients — I build software tools that solve real workflow problems.</p>
           <div className="tools-hero-stats reveal">
             <div className="ths"><div className="ths-num">4</div><div className="ths-label">Chrome Extensions</div></div>
-            <div className="ths"><div className="ths-num">1</div><div className="ths-label">Free SEO Tool</div></div>
+            <div className="ths"><div className="ths-num">2</div><div className="ths-label">Free Tools</div></div>
             <div className="ths"><div className="ths-num">30+</div><div className="ths-label">Countries Using</div></div>
             <div className="ths"><div className="ths-num">2000+</div><div className="ths-label">Total Users</div></div>
           </div>
@@ -204,12 +227,21 @@ export default function ToolsPage() {
 
       <section className="free-tools" ref={freeRef}>
         <div className="container">
-          <div className="ft-card reveal">
-            <div className="ft-icon">🔧</div>
-            <h2>Free SEO Report <span className="text-gradient">Generator</span></h2>
-            <p>Get an instant, comprehensive SEO health report for any website — completely free, no signup required.</p>
-            <div className="ft-features">{FREE_FEATURES.map(f=><div className="ft-feat" key={f}>✓ {f}</div>)}</div>
-            <a href="https://walidhasan.com/seo-report-generator/" target="_blank" rel="noopener noreferrer" className="btn btn-brand">Try Free SEO Report Generator <span className="arrow">→</span></a>
+          <div className="sec-header center reveal">
+            <div className="sec-label">100% Free</div>
+            <h2 className="sec-title">Free Tools <span className="text-gradient">& Resources</span></h2>
+            <p className="sec-desc">No signup, no cost — practical tools built to solve real problems.</p>
+          </div>
+          <div className="free-tools-grid">
+            {FREE_TOOLS.map((t) => (
+              <div className="ft-card reveal" key={t.id}>
+                <div className="ft-icon">{t.icon}</div>
+                <h3>{t.titlePrefix} <span className="text-gradient">{t.titleGradient}</span></h3>
+                <p>{t.desc}</p>
+                <div className="ft-features">{t.features.map(f=><div className="ft-feat" key={f}>✓ {f}</div>)}</div>
+                <a href={t.url} target="_blank" rel="noopener noreferrer" className="btn btn-brand">{t.linkText} <span className="arrow">→</span></a>
+              </div>
+            ))}
           </div>
         </div>
       </section>
