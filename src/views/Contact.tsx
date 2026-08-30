@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import JsonLd from '@/components/JsonLd'
@@ -47,10 +47,23 @@ const css = `
 .ct-form{display:flex;flex-direction:column;gap:14px}
 .ct-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .ct-field label{display:block;font-size:.78rem;font-weight:600;color:var(--text-secondary);margin-bottom:6px;text-transform:uppercase;letter-spacing:.8px}
-.ct-field input,.ct-field textarea,.ct-field select{width:100%;padding:12px 16px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--r-sm);color:var(--text-primary);font-family:var(--font-body);font-size:.9rem;transition:all .3s;outline:none}
-.ct-field input:focus,.ct-field textarea:focus,.ct-field select:focus{border-color:var(--brand-500);box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+.ct-field input,.ct-field textarea{width:100%;padding:12px 16px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--r-sm);color:var(--text-primary);font-family:var(--font-body);font-size:.9rem;transition:all .3s;outline:none}
+.ct-field input:focus,.ct-field textarea:focus{border-color:var(--brand-500);box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
 .ct-field textarea{min-height:100px;resize:vertical}
-.ct-field select option{background:var(--bg-card)}
+
+.ct-select{position:relative}
+.ct-select-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--r-sm);color:var(--text-primary);font-family:var(--font-body);font-size:.9rem;text-align:left;cursor:pointer;transition:all .3s}
+.ct-select-trigger:hover{border-color:var(--border-hover)}
+.ct-select.open .ct-select-trigger,.ct-select-trigger:focus{border-color:var(--brand-500);box-shadow:0 0 0 3px rgba(37,99,235,0.1);outline:none}
+.ct-select-placeholder{color:var(--text-muted)}
+.ct-select-chevron{color:var(--brand-500);font-size:.75rem;transition:transform .3s;flex-shrink:0}
+.ct-select.open .ct-select-chevron{transform:rotate(180deg)}
+.ct-select-list{list-style:none;position:absolute;z-index:20;top:calc(100% + 8px);left:0;right:0;margin:0;padding:6px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-md);box-shadow:var(--shadow-card);max-height:260px;overflow-y:auto;animation:ctSelectIn .18s ease}
+@keyframes ctSelectIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.ct-select-option{width:100%;display:block;text-align:left;padding:10px 12px;border:0;border-radius:var(--r-sm);background:transparent;color:var(--text-secondary);font-family:var(--font-body);font-size:.88rem;cursor:pointer;transition:all .2s}
+.ct-select-option:hover,.ct-select-option:focus{background:rgba(37,99,235,0.08);color:var(--text-primary);outline:none}
+.ct-select-option.active{background:var(--gradient-brand);color:#fff}
+
 .ct-budget-options{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .ct-budget-btn{padding:10px;text-align:center;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:var(--r-sm);font-size:.82rem;font-weight:600;color:var(--text-secondary);cursor:pointer;transition:all .3s}
 .ct-budget-btn:hover{border-color:var(--brand-500);color:var(--text-primary)}
@@ -91,6 +104,14 @@ const css = `
 `
 
 const BUDGETS = ['$500 – $1K', '$1K – $3K', '$3K – $5K', '$5K+']
+const SERVICE_OPTIONS = [
+  'Website Design & Development',
+  'SEO Strategy & Execution',
+  'Local SEO & GBP Optimization',
+  'Web Analytics & Tracking',
+  'Lead Generation Strategy',
+  'Full Digital Growth Consulting',
+]
 const FAQS = [
   { q: 'What happens after I submit the form?', a: 'You\'ll receive a confirmation within 24 hours with initial thoughts and a suggested time for a free strategy call.' },
   { q: 'Is the consultation really free?', a: 'Yes. The initial strategy call is completely free with no obligations.' },
@@ -106,18 +127,48 @@ export default function ContactPage() {
   const idealRef = useScrollReveal()
   const faqRef = useScrollReveal()
   const [budget, setBudget] = useState('')
+  const [service, setService] = useState('')
+  const [serviceOpen, setServiceOpen] = useState(false)
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
   const [activeFaq, setActiveFaq] = useState(0)
+  const serviceRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!serviceOpen) return
+
+    const handleClick = (e: MouseEvent) => {
+      if (serviceRef.current && !serviceRef.current.contains(e.target as Node)) {
+        setServiceOpen(false)
+      }
+    }
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setServiceOpen(false)
+    }
+
+    document.addEventListener('mousedown', handleClick)
+    document.addEventListener('keydown', handleKey)
+    return () => {
+      document.removeEventListener('mousedown', handleClick)
+      document.removeEventListener('keydown', handleKey)
+    }
+  }, [serviceOpen])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setError('')
+
+    if (!service) {
+      setError('Please select a service.')
+      return
+    }
+
     setSending(true)
 
     const formData = new FormData(e.currentTarget)
     formData.set('budget', budget)
+    formData.set('service', service)
 
     try {
       const res = await fetch('/contact-handler.php', {
@@ -194,13 +245,43 @@ export default function ContactPage() {
                     <div className="ct-field"><label htmlFor="ct-email">Email</label><input id="ct-email" name="email" type="email" placeholder="john@company.com" required /></div>
                   </div>
                   <div className="ct-field"><label htmlFor="ct-website">Website URL (optional)</label><input id="ct-website" name="website" type="url" placeholder="https://yoursite.com" /></div>
-                  <div className="ct-field"><label htmlFor="ct-service">Service Interest</label>
-                    <select id="ct-service" name="service" required defaultValue="">
-                      <option value="" disabled>Select a service</option>
-                      <option>Website Design & Development</option><option>SEO Strategy & Execution</option>
-                      <option>Local SEO & GBP Optimization</option><option>Web Analytics & Tracking</option>
-                      <option>Lead Generation Strategy</option><option>Full Digital Growth Consulting</option>
-                    </select>
+                  <div className="ct-field" ref={serviceRef}>
+                    <label htmlFor="ct-service-trigger">Service Interest</label>
+                    <div className={`ct-select${serviceOpen ? ' open' : ''}`}>
+                      <button
+                        type="button"
+                        id="ct-service-trigger"
+                        className="ct-select-trigger"
+                        aria-haspopup="listbox"
+                        aria-expanded={serviceOpen}
+                        onClick={() => setServiceOpen((o) => !o)}
+                      >
+                        <span className={service ? '' : 'ct-select-placeholder'}>
+                          {service || 'Select a service'}
+                        </span>
+                        <span className="ct-select-chevron" aria-hidden="true">▾</span>
+                      </button>
+                      {serviceOpen && (
+                        <ul className="ct-select-list" role="listbox" aria-label="Service Interest">
+                          {SERVICE_OPTIONS.map((opt) => (
+                            <li key={opt} role="presentation">
+                              <button
+                                type="button"
+                                role="option"
+                                aria-selected={service === opt}
+                                className={`ct-select-option${service === opt ? ' active' : ''}`}
+                                onClick={() => {
+                                  setService(opt)
+                                  setServiceOpen(false)
+                                }}
+                              >
+                                {opt}
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                   </div>
                   <div className="ct-field"><label id="ct-budget-label">Budget Range</label>
                     <div className="ct-budget-options" role="group" aria-labelledby="ct-budget-label">{BUDGETS.map(b => <div key={b} role="button" tabIndex={0} className={`ct-budget-btn${budget === b ? ' active' : ''}`} onClick={() => setBudget(b)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setBudget(b) } }}>{b}</div>)}</div>
