@@ -61,8 +61,8 @@
 .nav-logo img {
   width: 30px;
   height: 30px;
-  object-fit: contain;
-  border-radius: 6px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 .nav-logo-text {
   font-family: var(--font-logo);

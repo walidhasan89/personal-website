@@ -53,8 +53,8 @@ export const metadata: Metadata = {
     images: [OG_IMAGE.url],
   },
   icons: {
-    icon: '/assets/walidhasan-logo.png',
-    apple: '/assets/walidhasan-logo.png',
+    icon: '/assets/favicon-round.png',
+    apple: '/assets/favicon-round.png',
   },
 }
 
