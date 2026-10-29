@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import JsonLd from '@/components/JsonLd'
 import { softwareApplicationSchema } from '@/lib/schema'
+import { getScreenshot, SCREENSHOT_FALLBACK } from '@/lib/screenshot'
 import { useScrollReveal } from '@/hooks/useAnimations'
 
 const css = `
@@ -43,13 +44,15 @@ const css = `
 .ps-metric-label{font-size:.6rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;font-weight:600}
 
 .free-tools{padding:110px 0;background:var(--bg-secondary)}
-.ft-card{max-width:800px;margin:0 auto;padding:48px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-lg);text-align:center;transition:all .5s}
+.free-tools-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;align-items:stretch}
+.ft-card{display:flex;flex-direction:column;padding:44px 40px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-lg);text-align:center;transition:all .5s}
 .ft-card:hover{border-color:var(--border-hover);box-shadow:var(--shadow-card)}
 .ft-icon{font-size:2.5rem;margin-bottom:16px}
-.ft-card h2{font-family:var(--font-heading);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;margin-bottom:14px}
-.ft-card>p{font-size:.94rem;color:var(--text-secondary);line-height:1.85;margin-bottom:28px;max-width:560px;margin-left:auto;margin-right:auto}
-.ft-features{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px;text-align:left}
-.ft-feat{font-size:.82rem;color:var(--text-secondary);padding:10px;background:var(--bg-elevated);border-radius:var(--r-sm)}
+.ft-card h3{font-family:var(--font-heading);font-size:clamp(1.3rem,2.4vw,1.6rem);font-weight:700;margin-bottom:14px}
+.ft-card>p{font-size:.92rem;color:var(--text-secondary);line-height:1.8;margin-bottom:24px}
+.ft-features{flex:1;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:28px;text-align:left;align-content:start}
+.ft-feat{font-size:.8rem;color:var(--text-secondary);padding:10px;background:var(--bg-elevated);border-radius:var(--r-sm)}
+.ft-card>a{margin-top:auto}
 
 .wt-section{padding:110px 0;background:var(--bg-primary)}
 .wt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
@@ -69,17 +72,16 @@ const css = `
 .sec-title{font-family:var(--font-heading);font-size:clamp(1.8rem,3.4vw,2.5rem);font-weight:700;letter-spacing:-.5px;margin-bottom:14px;line-height:1.18}
 .sec-desc{font-size:1rem;color:var(--text-secondary);max-width:580px;margin:0 auto;line-height:1.8}
 
-@media(max-width:1080px){.ps-layout,.ps-layout.reverse{grid-template-columns:1fr;direction:ltr}.wt-grid{grid-template-columns:1fr}}
-@media(max-width:768px){.tools-hero{padding:130px 0 60px}.ft-features{grid-template-columns:repeat(2,1fr)}.ps-features{grid-template-columns:1fr}}
+@media(max-width:1080px){.ps-layout,.ps-layout.reverse{grid-template-columns:1fr;direction:ltr}.wt-grid,.free-tools-grid{grid-template-columns:1fr}}
+@media(max-width:768px){.tools-hero{padding:130px 0 60px}.ft-card{padding:32px 24px}.ps-features{grid-template-columns:1fr}}
 `
-
-function getScreenshot(url:string){return`https://api.microlink.io/?url=${encodeURIComponent(url.replace(/\/$/,''))}&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&overlay.browser=false&viewport.width=1280&viewport.height=800`}
 
 const PRODUCTS = [
   {id:'replychief',badge:'Chrome Extension',badgeType:'ext',title:'ReplyChief',tagline:'Respond faster. Stay consistent. Save hours every week.',url:'https://replychief.com/',screenshot:getScreenshot('https://replychief.com'),desc:'ReplyChief streamlines communication workflows by giving professionals a centralized system for managing replies.',features:['Template library with categories','One-click reply insertion','Cross-platform compatibility','Custom shortcut triggers','Team sharing capabilities','Variable/personalization support'],metrics:[{num:'10x',label:'Faster Replies'},{num:'5+',label:'Hours Saved/Week'},{num:'500+',label:'Users'},{num:'4.8★',label:'Rating'}]},
   {id:'adminpalette',badge:'Chrome Extension',badgeType:'ext',title:'Shopify AdminPalette',tagline:'Command your Shopify store at the speed of thought.',url:'https://adminpalette.com/',screenshot:getScreenshot('https://adminpalette.com'),desc:'AdminPalette adds a powerful command palette to the Shopify admin — letting store owners navigate with keyboard shortcuts.',features:['Cmd+K command palette','Instant product & order search','Quick navigation to any page','Custom keyboard shortcuts','Recent actions history','Works on any Shopify plan'],metrics:[{num:'3x',label:'Faster Navigation'},{num:'Cmd+K',label:'Activation'},{num:'1000+',label:'Installs'},{num:'5.0★',label:'Rating'}],reverse:true},
   {id:'rfqautopilot',badge:'Chrome Extension',badgeType:'ext',title:'RFQ AutoPilot',tagline:'Automate procurement. Respond faster. Win more deals.',url:'https://rfqautopilot.com/',screenshot:getScreenshot('https://rfqautopilot.com'),desc:'RFQ AutoPilot automates the Request for Quotation process for procurement and sourcing teams.',features:['Automated data extraction','One-click RFQ generation','Supplier communication automation','Response tracking dashboard','Template management','Integration with existing workflows'],metrics:[{num:'80%',label:'Time Saved'},{num:'5x',label:'Faster RFQs'},{num:'B2B',label:'Focused'},{num:'4.9★',label:'Rating'}]},
   {id:'siteaudit',badge:'New Launch',badgeType:'new',title:'Site Audit Pilot',tagline:'Instant SEO audits. Right from your browser.',url:'https://chromewebstore.google.com/detail/bpopbhodmhhbedeepfkmifaciaafjbgn',screenshot:getScreenshot('https://siteauditpilot.com'),desc:'Site Audit Pilot gives instant SEO audits for any webpage — analyzing meta tags, headings, images, and performance.',features:['One-click instant page audit','Meta tag & heading analysis','Image optimization checker','Link structure analysis','Schema markup detection','Performance score overview'],metrics:[{num:'1-Click',label:'Audit Speed'},{num:'25+',label:'Check Points'},{num:'Free',label:'To Use'},{num:'New',label:'On Chrome Store'}],reverse:true},
+  {id:'leadorbiq',badge:'Chrome Extension',badgeType:'ext',title:'LeadOrbiq',tagline:'Find better prospects. Understand their needs. Close more deals.',url:'https://leadorbiq.com/',screenshot:getScreenshot('https://leadorbiq.com'),desc:'LeadOrbiq discovers local businesses, analyzes their online presence, and uses AI to turn those insights into qualified, sales-ready lead intelligence — so you know exactly who’s worth contacting, why, and what to offer them.',features:['AI-powered business discovery','Website & SEO opportunity analysis','Automatic lead qualification','Personalized outreach insights','Built for agencies & sales teams','Actionable lead intelligence, not raw lists'],metrics:[{num:'AI',label:'Powered Analysis'},{num:'5-Step',label:'Discover to Convert'},{num:'B2B',label:'Focused'},{num:'New',label:'Launch'}]},
 ]
 
 const WHY_TOOLS = [
@@ -91,7 +93,28 @@ const WHY_TOOLS = [
   {icon:'💡',title:'Free & Accessible',desc:'Core functionality is free for everyone. Premium features are priced fairly.'},
 ]
 
-const FREE_FEATURES = ['Instant SEO score','Meta tag analysis','Heading structure check','Image optimization report','Mobile-friendly test','Page speed insights','Downloadable PDF report','No signup required']
+const FREE_TOOLS = [
+  {
+    id: 'seo-report-generator',
+    icon: '🔧',
+    titlePrefix: 'Free SEO Report',
+    titleGradient: 'Generator',
+    desc: 'Get an instant, comprehensive SEO health report for any website — completely free, no signup required.',
+    features: ['Instant SEO score','Meta tag analysis','Heading structure check','Image optimization report','Mobile-friendly test','Page speed insights','Downloadable PDF report','No signup required'],
+    url: 'https://walidhasan.com/seo-report-generator/',
+    linkText: 'Try Free SEO Report Generator',
+  },
+  {
+    id: 'invoice-builder',
+    icon: '🧾',
+    titlePrefix: 'Free Invoice',
+    titleGradient: 'Builder',
+    desc: 'Create clean, professional invoices in minutes — then log in with a magic link (just your email, no password) to manage and access your full invoice history from anywhere.',
+    features: ['Professional invoice templates','Add unlimited line items','Automatic total calculation','Download or print as PDF','Magic link email login','Manage invoice history anywhere','No signup required','Completely free'],
+    url: 'https://walidhasan.com/invoice-builder/',
+    linkText: 'Try Free Invoice Builder',
+  },
+]
 
 /**
  * One section per product. Extracted from an inline `PRODUCTS.map(...)` that
@@ -134,6 +157,10 @@ function ProductSection({ product: p }: { product: (typeof PRODUCTS)[number] }) 
                 loading="lazy"
                 width={1280}
                 height={800}
+                onError={(e) => {
+                  e.currentTarget.onerror = null
+                  e.currentTarget.src = SCREENSHOT_FALLBACK
+                }}
               />
               <div className={`ps-screenshot-badge ${p.badgeType}`}>
                 {p.badgeType === 'ext' ? 'Chrome Extension' : 'New Launch'}
@@ -187,8 +214,8 @@ export default function ToolsPage() {
           <h1 className="reveal">Purpose-Built Tools for <span className="text-gradient">Digital Professionals</span></h1>
           <p className="tools-hero-sub reveal">I don't just build websites for clients — I build software tools that solve real workflow problems.</p>
           <div className="tools-hero-stats reveal">
-            <div className="ths"><div className="ths-num">4</div><div className="ths-label">Chrome Extensions</div></div>
-            <div className="ths"><div className="ths-num">1</div><div className="ths-label">Free SEO Tool</div></div>
+            <div className="ths"><div className="ths-num">5</div><div className="ths-label">Chrome Extensions</div></div>
+            <div className="ths"><div className="ths-num">2</div><div className="ths-label">Free Tools</div></div>
             <div className="ths"><div className="ths-num">30+</div><div className="ths-label">Countries Using</div></div>
             <div className="ths"><div className="ths-num">2000+</div><div className="ths-label">Total Users</div></div>
           </div>
@@ -201,12 +228,21 @@ export default function ToolsPage() {
 
       <section className="free-tools" ref={freeRef}>
         <div className="container">
-          <div className="ft-card reveal">
-            <div className="ft-icon">🔧</div>
-            <h2>Free SEO Report <span className="text-gradient">Generator</span></h2>
-            <p>Get an instant, comprehensive SEO health report for any website — completely free, no signup required.</p>
-            <div className="ft-features">{FREE_FEATURES.map(f=><div className="ft-feat" key={f}>✓ {f}</div>)}</div>
-            <a href="https://walidhasan.com/seo-report-generator/" target="_blank" rel="noopener noreferrer" className="btn btn-brand">Try Free SEO Report Generator <span className="arrow">→</span></a>
+          <div className="sec-header center reveal">
+            <div className="sec-label">100% Free</div>
+            <h2 className="sec-title">Free Tools <span className="text-gradient">& Resources</span></h2>
+            <p className="sec-desc">No signup, no cost — practical tools built to solve real problems.</p>
+          </div>
+          <div className="free-tools-grid">
+            {FREE_TOOLS.map((t) => (
+              <div className="ft-card reveal" key={t.id}>
+                <div className="ft-icon">{t.icon}</div>
+                <h3>{t.titlePrefix} <span className="text-gradient">{t.titleGradient}</span></h3>
+                <p>{t.desc}</p>
+                <div className="ft-features">{t.features.map(f=><div className="ft-feat" key={f}>✓ {f}</div>)}</div>
+                <a href={t.url} target="_blank" rel="noopener noreferrer" className="btn btn-brand">{t.linkText} <span className="arrow">→</span></a>
+              </div>
+            ))}
           </div>
         </div>
       </section>

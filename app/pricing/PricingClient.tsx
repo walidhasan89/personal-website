@@ -75,7 +75,7 @@ const localSeoPackages = [
         period: '/month',
         label: 'For small local businesses',
         bestFor: 'Best for one-location businesses targeting one main city or service area.',
-        timeline: 'Recommended timeline: 3 months minimum',
+        timeline: 'Recommended timeline: 6-months minimum',
         scope: 'Covers 1 GBP location and up to 5 service pages',
         note:
             'City/service landing pages are not included by default. Add SEO landing pages for $100/page if needed.',
@@ -87,6 +87,9 @@ const localSeoPackages = [
             'Basic citation cleanup guidance',
             'Google Search Console monitoring',
             'Monthly SEO performance report',
+            'AEO basics: FAQ & answer-focused content structuring',
+            'Schema / structured data setup for AI search',
+            'AI Overviews visibility check',
         ],
     },
     {
@@ -96,7 +99,7 @@ const localSeoPackages = [
         label: 'For stronger local ranking',
         bestFor:
             'Best for local businesses targeting multiple services or nearby city/service keywords.',
-        timeline: 'Recommended timeline: 3–6 months',
+        timeline: 'Recommended timeline: 6-months minimum',
         scope: 'Covers 1–2 GBP locations and up to 10 service pages',
         note:
             'New city/service landing pages can be added for $100/page for active SEO clients.',
@@ -111,6 +114,10 @@ const localSeoPackages = [
             'Technical SEO fixes',
             'Internal linking improvements',
             'Monthly growth report',
+            'AEO & GEO optimization for AI Overviews and answer engines',
+            'AI citation monitoring (ChatGPT, Gemini, Perplexity)',
+            'Entity & brand-signal optimization for AI search',
+            'Answer-first content formatting for generative engines',
         ],
     },
     {
@@ -120,7 +127,7 @@ const localSeoPackages = [
         label: 'For competitive local markets',
         bestFor:
             'Best for competitive local niches, multi-service businesses, or stronger city-based visibility.',
-        timeline: 'Recommended timeline: 6 months+',
+        timeline: 'Recommended timeline: 6-months minimum',
         scope: 'Covers 2–3 GBP locations and up to 15 service pages',
         note:
             'Multi-location businesses, large city campaigns, or aggressive local SEO campaigns may require a custom quote.',
@@ -133,6 +140,10 @@ const localSeoPackages = [
             'Ongoing technical SEO improvements',
             'Conversion improvement suggestions',
             'Priority support',
+            'Advanced AEO & GEO strategy for competitive AI search',
+            'Monthly AI answer visibility reporting',
+            'Third-party citation building for AI trust signals',
+            'Competitor AI share-of-voice analysis',
         ],
     },
 ]
@@ -145,7 +156,7 @@ const ecommerceSeoPackages = [
         label: 'For small ecommerce stores',
         bestFor:
             'Best for small Shopify, WooCommerce, or ecommerce stores that need SEO foundations.',
-        timeline: 'Recommended timeline: 3 months minimum',
+        timeline: 'Recommended timeline: 6-months minimum',
         scope: 'Focuses on selected priority collections, categories, and products',
         note:
             'Bulk product SEO, advanced technical fixes, or large-scale collection copy are not included by default.',
@@ -158,6 +169,9 @@ const ecommerceSeoPackages = [
             'Search Console monitoring',
             'Basic internal linking recommendations',
             'Monthly SEO report',
+            'AEO basics: product & category FAQ structuring',
+            'Schema / structured data setup for AI search',
+            'AI Overviews visibility check',
         ],
     },
     {
@@ -167,7 +181,7 @@ const ecommerceSeoPackages = [
         label: 'For category and product growth',
         bestFor:
             'Best for growing ecommerce stores that want stronger category, collection, and product rankings.',
-        timeline: 'Recommended timeline: 3–6 months',
+        timeline: 'Recommended timeline: 6-months minimum',
         scope:
             'Focuses on priority category architecture, selected product SEO, and technical improvements',
         note:
@@ -183,6 +197,10 @@ const ecommerceSeoPackages = [
             'Schema recommendations',
             'Conversion improvement suggestions',
             'Monthly growth report',
+            'AEO & GEO optimization for AI Overviews and answer engines',
+            'AI citation monitoring (ChatGPT, Gemini, Perplexity)',
+            'Product & collection content structured for AI answers',
+            'Entity & brand-signal optimization for AI search',
         ],
     },
     {
@@ -192,7 +210,7 @@ const ecommerceSeoPackages = [
         label: 'For larger competitive stores',
         bestFor:
             'Best for larger stores, competitive ecommerce niches, or stores with many collections/products.',
-        timeline: 'Recommended timeline: 6 months+',
+        timeline: 'Recommended timeline: 6-months minimum',
         scope: 'Focuses on advanced SEO strategy, technical structure, and ongoing ecommerce growth',
         note:
             'Large-scale product SEO, faceted navigation issues, advanced schema, and complex technical fixes may require a custom quote.',
@@ -205,14 +223,33 @@ const ecommerceSeoPackages = [
             'CRO recommendations',
             'Ongoing performance monitoring',
             'Priority support',
+            'Advanced AEO & GEO strategy for competitive AI search',
+            'Monthly AI answer visibility reporting',
+            'Third-party citation building for AI trust signals',
+            'Competitor AI share-of-voice analysis',
         ],
     },
+]
+
+const setupFeeIncludes = [
+    'Website and technical SEO audit',
+    'Google Business Profile audit',
+    'Keyword and search-intent research',
+    'Competitor research',
+    'Analytics and tracking review',
+    'Initial Local SEO strategy',
+    'AI search & AEO visibility baseline',
+    'Campaign onboarding',
 ]
 
 const localSeoFaqs = [
     {
         q: 'How long does Local SEO take to show results?',
         a: 'Local SEO usually needs at least 3 months to show meaningful movement. Some Google Business Profile improvements can happen earlier, but stronger city/service rankings normally take 3–6 months depending on competition.',
+    },
+    {
+        q: 'Do your SEO plans include AEO and GEO?',
+        a: 'Yes. Every Local and Ecommerce SEO plan includes AEO (Answer Engine Optimization) and GEO (Generative Engine Optimization) work — structuring your content and structured data so Google AI Overviews, ChatGPT, Perplexity, and similar answer engines can understand, quote, and cite your business.',
     },
     {
         q: 'Is Local SEO an ongoing monthly service?',
@@ -248,6 +285,10 @@ const ecommerceSeoFaqs = [
     {
         q: 'How long does Ecommerce SEO take?',
         a: 'Ecommerce SEO usually takes 3–6 months to show stronger improvements, and competitive stores may need 6–12 months for meaningful category and product ranking growth.',
+    },
+    {
+        q: 'Is AEO and GEO included in Ecommerce SEO?',
+        a: 'Yes. Ecommerce SEO plans include AEO (Answer Engine Optimization) and GEO (Generative Engine Optimization) alongside product and category SEO, so your products and collections are eligible to surface in Google AI Overviews, ChatGPT, Perplexity, and other AI shopping answers.',
     },
     {
         q: 'Is Ecommerce SEO ongoing?',
@@ -406,11 +447,14 @@ export default function PricingClient() {
                     <div className="pricing-section-header center">
                         <div className="sec-label">SEO Growth</div>
                         <h2 className="sec-title">
-                            SEO Pricing for <span className="text-gradient">Local & Ecommerce</span>
+                            SEO Pricing for <span className="text-gradient">Local, Ecommerce & AI Search</span>
                         </h2>
                         <p className="sec-desc">
                             Choose between Local SEO with Google Business Profile optimization
-                            or Ecommerce SEO for product and collection growth.
+                            or Ecommerce SEO for product and collection growth. Every plan
+                            includes AEO (Answer Engine Optimization) and GEO (Generative
+                            Engine Optimization) for visibility in Google AI Overviews,
+                            ChatGPT, Perplexity, and other answer engines.
                         </p>
                     </div>
 
@@ -471,6 +515,61 @@ export default function PricingClient() {
                                 </Link>
                             </article>
                         ))}
+                    </div>
+                </div>
+            </section>
+
+            <section className="setup-fee-section">
+                <div className="container">
+                    <div className="setup-fee-grid">
+                        <div className="setup-fee-content">
+                            <div className="setup-fee-kicker">
+                                <span className="setup-fee-kicker-dot" />
+                                Before monthly work begins
+                            </div>
+
+                            <h2>
+                                One-time <span className="text-gradient">setup fee.</span>
+                            </h2>
+
+                            <div className="setup-fee-price">
+                                <strong>$199</strong>
+                                <span>once</span>
+                            </div>
+
+                            <p>
+                                The setup fee covers the research, auditing, tracking review,
+                                competitor analysis, and campaign preparation required before
+                                monthly work begins.
+                            </p>
+
+                            <a
+                                href="https://buy.stripe.com/14A00kbbC2jL8l24jBfjG0b"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-brand setup-fee-pay-btn setup-fee-pay-btn-bottom"
+                            >
+                                Pay Now <span className="arrow">→</span>
+                            </a>
+                        </div>
+
+                        <div className="setup-fee-card">
+                            <span className="setup-fee-corner setup-fee-corner-tl" aria-hidden="true" />
+                            <span className="setup-fee-corner setup-fee-corner-tr" aria-hidden="true" />
+                            <span className="setup-fee-corner setup-fee-corner-bl" aria-hidden="true" />
+                            <span className="setup-fee-corner setup-fee-corner-br" aria-hidden="true" />
+
+                            <span className="setup-fee-card-label">Setup Includes</span>
+
+                            <ul className="setup-fee-list">
+                                {setupFeeIncludes.map((item) => (
+                                    <li key={item}>
+                                        <span className="setup-fee-check">✓</span>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>

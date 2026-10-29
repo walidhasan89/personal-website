@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { SOCIAL_LINKS } from '@/lib/social'
 
 const quickLinks = [
   { label: 'Home', href: '/' },
@@ -15,52 +16,6 @@ const supportLinks = [
   { label: 'Tools', href: '/tools' },
   { label: 'SEO Report Generator', href: 'https://walidhasan.com/seo-report-generator/', external: true },
   { label: 'Inoviqa LLC', href: 'https://inoviqa.com/', external: true },
-]
-
-const socials = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/walidhasan-riyad/', short: 'in' },
-  { label: 'Behance', href: 'https://www.behance.net/walid_hasan', short: 'Be' },
-  { label: 'Facebook', href: 'https://www.facebook.com/iamwalidhasan', short: 'f' },
-  { label: 'YouTube', href: 'https://www.youtube.com/@walidhasan-r', short: '▶' },
-]
-
-const socialLinks = [
-  {
-    label: 'LinkedIn',
-    short: 'in',
-    href: 'https://www.linkedin.com/in/walidhasan-riyad/',
-    className: 'social-linkedin',
-  },
-  {
-    label: 'Facebook',
-    short: 'fb',
-    href: 'https://www.facebook.com/iamwalidhasan',
-    className: 'social-facebook',
-  },
-  {
-    label: 'Instagram',
-    short: 'ig',
-    href: 'https://www.instagram.com/iamwalidhasan/',
-    className: 'social-instagram',
-  },
-  {
-    label: 'Behance',
-    short: 'be',
-    href: 'https://www.behance.net/walid_hasan',
-    className: 'social-behance',
-  },
-  {
-    label: 'YouTube',
-    short: 'yt',
-    href: 'https://www.youtube.com/@walidhasan-r',
-    className: 'social-youtube',
-  },
-  {
-    label: 'X',
-    short: 'x',
-    href: 'https://x.com/walidhasan_r',
-    className: 'social-x',
-  },
 ]
 
 export default function Footer() {
@@ -101,10 +56,10 @@ export default function Footer() {
               </div>
 
               <div className="footer-socials">
-                {socialLinks.map((social) => (
+                {SOCIAL_LINKS.map((social) => (
                   <a
                     href={social.href}
-                    className={`footer-social ${social.className}`}
+                    className={`footer-social social-${social.key}`}
                     aria-label={social.label}
                     target="_blank"
                     rel="noopener noreferrer"

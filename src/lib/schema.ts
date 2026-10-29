@@ -7,20 +7,15 @@
 // visibly published on the site. See BLOCKED-USER-INPUT.md before adding
 // anything beyond what is listed below.
 
+import { SOCIAL_LINKS } from './social'
+
 export const SITE_URL = 'https://walidhasan.com'
 
 // Real, verified profile URLs actually linked from the site's own
-// Navbar/Footer/Contact components (see src/components/Navbar.tsx,
-// src/components/Footer.tsx). Only URLs that are already published on-site
-// are included here — this keeps schema and visible content in sync.
-export const SAME_AS: string[] = [
-  'https://www.linkedin.com/in/walidhasan-riyad/',
-  'https://www.facebook.com/iamwalidhasan',
-  'https://www.instagram.com/iamwalidhasan/',
-  'https://www.behance.net/walid_hasan',
-  'https://www.youtube.com/@walidhasan-r',
-  'https://x.com/walidhasan_r',
-]
+// Navbar/Footer/Contact components. Derived from src/lib/social.ts (the
+// single source of truth those components also render from) so schema and
+// visible content can never drift out of sync.
+export const SAME_AS: string[] = SOCIAL_LINKS.map((s) => s.href)
 
 export const PERSON_ID = `${SITE_URL}/#person`
 export const ORG_ID = 'https://inoviqa.com/#organization'

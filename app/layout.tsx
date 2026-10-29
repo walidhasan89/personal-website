@@ -19,6 +19,7 @@ import JsonLd from '@/components/JsonLd'
 import { ThemeProvider } from '@/context/ThemeContext'
 import { rootGraph } from '@/lib/schema'
 import { OG_IMAGE } from '@/lib/seo'
+import { THEME_INIT_SCRIPT } from '@/lib/theme'
 
 const siteUrl = 'https://walidhasan.com'
 
@@ -53,8 +54,8 @@ export const metadata: Metadata = {
     images: [OG_IMAGE.url],
   },
   icons: {
-    icon: '/assets/walidhasan-logo.png',
-    apple: '/assets/walidhasan-logo.png',
+    icon: '/assets/favicon-round.png',
+    apple: '/assets/favicon-round.png',
   },
 }
 
@@ -62,7 +63,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <meta name="theme-color" content="#060611" />
+        {/* Runs before first paint so the theme never flashes: it resolves
+            the same stored-preference-else-OS-preference logic as
+            ThemeProvider via the shared THEME_INIT_SCRIPT. Without this,
+            system-light visitors got a dark flash on every load (the CSS
+            default is dark). */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+        {/* Follows the OS scheme so mobile browser chrome matches the site.
+            Note: it cannot track the navbar's manual override — it keys off
+            the OS preference only, which is the same signal the automatic
+            default uses. */}
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#060611" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f8f9fc" />
         <JsonLd data={rootGraph()} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
