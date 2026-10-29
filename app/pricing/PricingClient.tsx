@@ -87,6 +87,9 @@ const localSeoPackages = [
             'Basic citation cleanup guidance',
             'Google Search Console monitoring',
             'Monthly SEO performance report',
+            'AEO basics: FAQ & answer-focused content structuring',
+            'Schema / structured data setup for AI search',
+            'AI Overviews visibility check',
         ],
     },
     {
@@ -111,6 +114,10 @@ const localSeoPackages = [
             'Technical SEO fixes',
             'Internal linking improvements',
             'Monthly growth report',
+            'AEO & GEO optimization for AI Overviews and answer engines',
+            'AI citation monitoring (ChatGPT, Gemini, Perplexity)',
+            'Entity & brand-signal optimization for AI search',
+            'Answer-first content formatting for generative engines',
         ],
     },
     {
@@ -133,6 +140,10 @@ const localSeoPackages = [
             'Ongoing technical SEO improvements',
             'Conversion improvement suggestions',
             'Priority support',
+            'Advanced AEO & GEO strategy for competitive AI search',
+            'Monthly AI answer visibility reporting',
+            'Third-party citation building for AI trust signals',
+            'Competitor AI share-of-voice analysis',
         ],
     },
 ]
@@ -158,6 +169,9 @@ const ecommerceSeoPackages = [
             'Search Console monitoring',
             'Basic internal linking recommendations',
             'Monthly SEO report',
+            'AEO basics: product & category FAQ structuring',
+            'Schema / structured data setup for AI search',
+            'AI Overviews visibility check',
         ],
     },
     {
@@ -183,6 +197,10 @@ const ecommerceSeoPackages = [
             'Schema recommendations',
             'Conversion improvement suggestions',
             'Monthly growth report',
+            'AEO & GEO optimization for AI Overviews and answer engines',
+            'AI citation monitoring (ChatGPT, Gemini, Perplexity)',
+            'Product & collection content structured for AI answers',
+            'Entity & brand-signal optimization for AI search',
         ],
     },
     {
@@ -205,6 +223,10 @@ const ecommerceSeoPackages = [
             'CRO recommendations',
             'Ongoing performance monitoring',
             'Priority support',
+            'Advanced AEO & GEO strategy for competitive AI search',
+            'Monthly AI answer visibility reporting',
+            'Third-party citation building for AI trust signals',
+            'Competitor AI share-of-voice analysis',
         ],
     },
 ]
@@ -216,6 +238,7 @@ const setupFeeIncludes = [
     'Competitor research',
     'Analytics and tracking review',
     'Initial Local SEO strategy',
+    'AI search & AEO visibility baseline',
     'Campaign onboarding',
 ]
 
@@ -223,6 +246,10 @@ const localSeoFaqs = [
     {
         q: 'How long does Local SEO take to show results?',
         a: 'Local SEO usually needs at least 3 months to show meaningful movement. Some Google Business Profile improvements can happen earlier, but stronger city/service rankings normally take 3–6 months depending on competition.',
+    },
+    {
+        q: 'Do your SEO plans include AEO and GEO?',
+        a: 'Yes. Every Local and Ecommerce SEO plan includes AEO (Answer Engine Optimization) and GEO (Generative Engine Optimization) work — structuring your content and structured data so Google AI Overviews, ChatGPT, Perplexity, and similar answer engines can understand, quote, and cite your business.',
     },
     {
         q: 'Is Local SEO an ongoing monthly service?',
@@ -258,6 +285,10 @@ const ecommerceSeoFaqs = [
     {
         q: 'How long does Ecommerce SEO take?',
         a: 'Ecommerce SEO usually takes 3–6 months to show stronger improvements, and competitive stores may need 6–12 months for meaningful category and product ranking growth.',
+    },
+    {
+        q: 'Is AEO and GEO included in Ecommerce SEO?',
+        a: 'Yes. Ecommerce SEO plans include AEO (Answer Engine Optimization) and GEO (Generative Engine Optimization) alongside product and category SEO, so your products and collections are eligible to surface in Google AI Overviews, ChatGPT, Perplexity, and other AI shopping answers.',
     },
     {
         q: 'Is Ecommerce SEO ongoing?',
@@ -416,11 +447,14 @@ export default function PricingClient() {
                     <div className="pricing-section-header center">
                         <div className="sec-label">SEO Growth</div>
                         <h2 className="sec-title">
-                            SEO Pricing for <span className="text-gradient">Local & Ecommerce</span>
+                            SEO Pricing for <span className="text-gradient">Local, Ecommerce & AI Search</span>
                         </h2>
                         <p className="sec-desc">
                             Choose between Local SEO with Google Business Profile optimization
-                            or Ecommerce SEO for product and collection growth.
+                            or Ecommerce SEO for product and collection growth. Every plan
+                            includes AEO (Answer Engine Optimization) and GEO (Generative
+                            Engine Optimization) for visibility in Google AI Overviews,
+                            ChatGPT, Perplexity, and other answer engines.
                         </p>
                     </div>
 
