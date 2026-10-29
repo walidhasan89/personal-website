@@ -12,7 +12,7 @@ import { SITE_URL } from '@/lib/schema'
  * change). Update the constant below — or a specific route's date — when
  * that page's content actually changes.
  */
-const LAST_REVIEWED = '2026-08-08'
+const LAST_REVIEWED = '2026-10-29'
 
 type Route = {
   path: string
@@ -28,22 +28,16 @@ const ROUTES: Route[] = [
   { path: '/', priority: 1.0, changeFrequency: 'weekly' },
   { path: '/about', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/services', priority: 0.9, changeFrequency: 'monthly' },
-  { path: '/case-studies', priority: 0.85, changeFrequency: 'monthly' },
-  { path: '/tools', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/work', priority: 0.85, changeFrequency: 'monthly' },
   { path: '/pricing', priority: 0.8, changeFrequency: 'monthly' },
-  { path: '/epoxy-flooring-marketing', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/book', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/contact', priority: 0.7, changeFrequency: 'monthly' },
   { path: '/privacy-policy', priority: 0.3, changeFrequency: 'yearly' },
   { path: '/terms-of-use', priority: 0.3, changeFrequency: 'yearly' },
 ]
 
-// NOTE: /seo-report-generator/ was previously listed here but has been
-// removed. It is not part of this Next.js application (it lives on the
-// server outside the build, preserved by public/.htaccess) and its current
-// status could not be verified. Listing an unverified URL in a sitemap
-// risks reporting a soft 404 to Google. Re-add it here once its presence
-// on the production server is confirmed — see docs/BLOCKED-USER-INPUT.md.
+// /tools, /epoxy-flooring-marketing, /case-studies, /seo-report-generator
+// and /invoice-builder are intentionally absent. They 301 in public/.htaccess.
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return ROUTES.map((route) => ({

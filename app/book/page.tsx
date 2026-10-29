@@ -2,9 +2,9 @@ import BookConsultation from '@/views/BookConsultation'
 import { pageMetadata } from '@/lib/seo'
 
 export const metadata = pageMetadata({
-  title: 'Book a Consultation — 30 Minute Strategy Call',
+  title: 'Book a Call — Website, Software & SEO',
   description:
-    'Book a free 30-minute strategy call with Walid Hasan to discuss your website, SEO, analytics or digital growth goals. No obligation.',
+    'Book a 30-minute call with Walid Hasan about a website, custom software, or SEO. No obligation.',
   path: '/book',
 })
 

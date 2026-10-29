@@ -13,7 +13,7 @@ const sections = [
   {
     title: '1. Who We Are',
     body: [
-      'This website is operated by Walid Hasan, a digital growth consultant providing services related to web design, SEO, analytics, conversion optimization, lead generation, website audits, and digital strategy.',
+      'This website is operated by Walid Hasan, providing website design, web development, software development, and SEO services.',
       'For privacy-related questions, you can contact: walid@inoviqa.com',
     ],
   },

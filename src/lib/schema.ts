@@ -23,29 +23,29 @@ export const SAME_AS: string[] = [
 ]
 
 export const PERSON_ID = `${SITE_URL}/#person`
-export const ORG_ID = 'https://inoviqa.com/#organization'
+export const ORG_ID = `${SITE_URL}/#organization`
 export const WEBSITE_ID = `${SITE_URL}/#website`
 
-// Areas of expertise. Every entry below corresponds to a service or product
-// that is described in visible page content (see src/views/Services.tsx and
-// src/views/Tools.tsx) — this is a summary of published content, not a new
-// claim. `knowsAbout` is one of the strongest signals available for telling
-// search engines and LLMs what topical domain a Person entity belongs to,
-// which is what separates this Walid Hasan from unrelated namesakes.
+// Areas of expertise. Every entry is covered by visible copy for the four
+// services (website design, web development, software development, SEO).
 export const KNOWS_ABOUT: string[] = [
+  'Website design',
+  'Web development',
+  'WordPress development',
+  'Software development',
   'Search engine optimization',
+  'Technical SEO',
+  'On-page SEO',
   'Local SEO',
   'Google Business Profile optimization',
-  'Technical SEO',
-  'Web design',
-  'WordPress development',
-  'Web analytics',
-  'Google Analytics 4',
-  'Google Tag Manager',
-  'Conversion rate optimization',
-  'Lead generation',
-  'Chrome extension development',
 ]
+
+export const SERVICES_OFFERED = [
+  'Website Design',
+  'Web Development',
+  'Software Development',
+  'SEO Services',
+] as const
 
 // Person entity — reused (by @id reference) across every page via layout.tsx.
 export function personSchema() {
@@ -54,10 +54,12 @@ export function personSchema() {
     '@id': PERSON_ID,
     name: 'Walid Hasan',
     url: SITE_URL,
-    image: `${SITE_URL}/assets/og-default.png`,
-    jobTitle: 'Digital Growth Consultant',
+    image: `${SITE_URL}/assets/og-default.jpg`,
+    jobTitle: 'Web Designer, Developer & SEO Specialist',
     description:
-      'Walid Hasan is a digital growth consultant and founder of Inoviqa LLC, specializing in web design, SEO strategy, web analytics, and conversion rate optimization.',
+      'Walid Hasan designs and builds websites, custom software, and SEO systems for businesses that need a clear online presence and measurable leads.',
+    email: 'hello@walidhasan.com',
+    telephone: '+8801774340932',
     worksFor: { '@id': ORG_ID },
     knowsAbout: KNOWS_ABOUT,
     sameAs: SAME_AS,
@@ -80,16 +82,33 @@ export function profilePageSchema(path: string) {
   }
 }
 
-// Organization entity for Inoviqa LLC, the agency Walid Hasan founded.
-// This is intentionally minimal — only facts published on walidhasan.com
-// and inoviqa.com (name, url, founder relationship) are included.
+// The hire-me practice behind walidhasan.com. Inoviqa LLC is a project
+// example on the work page, not the organization this site is selling.
 export function organizationSchema() {
   return {
-    '@type': 'Organization',
+    '@type': 'ProfessionalService',
     '@id': ORG_ID,
-    name: 'Inoviqa LLC',
-    url: 'https://inoviqa.com/',
+    name: 'Walid Hasan',
+    url: SITE_URL,
+    image: `${SITE_URL}/assets/og-default.jpg`,
+    description:
+      'Website design, web development, custom software, and SEO services for businesses that need a clear online presence and measurable leads.',
+    email: 'hello@walidhasan.com',
+    telephone: '+8801774340932',
     founder: { '@id': PERSON_ID },
+    knowsAbout: KNOWS_ABOUT,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Services',
+      itemListElement: SERVICES_OFFERED.map((name) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name,
+          provider: { '@id': PERSON_ID },
+        },
+      })),
+    },
   }
 }
 
@@ -148,28 +167,5 @@ export function breadcrumbSchema(items: BreadcrumbEntry[]) {
       name: item.name,
       item: item.path === '' ? SITE_URL : `${SITE_URL}${item.path}`,
     })),
-  }
-}
-
-export type SoftwareProductEntry = {
-  name: string
-  description: string
-  url: string
-  applicationCategory?: string
-}
-
-// SoftwareApplication schema for the Chrome extensions listed on /tools.
-// No ratings/review counts are included because none are independently
-// verified — see BLOCKED-USER-INPUT.md.
-export function softwareApplicationSchema(p: SoftwareProductEntry) {
-  return {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: p.name,
-    description: p.description,
-    url: p.url,
-    applicationCategory: p.applicationCategory || 'BrowserApplication',
-    operatingSystem: 'Chrome',
-    author: { '@id': PERSON_ID },
   }
 }

@@ -5,16 +5,14 @@ import Link from 'next/link'
 const quickLinks = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
-  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Work', href: '/work' },
   { label: 'About', href: '/about' },
+  { label: 'Pricing', href: '/pricing' },
 ]
 
 const supportLinks = [
-  { label: 'Book a Consultation', href: '/book' },
+  { label: 'Book a Call', href: '/book' },
   { label: 'Contact', href: '/contact' },
-  { label: 'Tools', href: '/tools' },
-  { label: 'SEO Report Generator', href: 'https://walidhasan.com/seo-report-generator/', external: true },
-  { label: 'Inoviqa LLC', href: 'https://inoviqa.com/', external: true },
 ]
 
 const socials = [
@@ -78,7 +76,7 @@ export default function Footer() {
               <Link href="/" className="footer-logo">
                 <span className="footer-logo-mark">
                   <img
-                    src="/assets/walidhasan-logo.png"
+                    src="/assets/walidhasan-logo.webp"
                     alt="Walid Hasan Logo"
                     width="34"
                     height="34"
@@ -88,16 +86,14 @@ export default function Footer() {
               </Link>
 
               <p className="footer-description">
-                Premium web designer, SEO strategist, and digital growth consultant helping brands build high-converting websites, stronger visibility, and smarter online systems.
+                Web designer, developer, and SEO specialist. I build websites, custom software, and SEO systems for businesses that need clients from their online presence.
               </p>
 
               <div className="footer-tags">
-                <span>Web Design</span>
-                <span>Development</span>
+                <span>Website Design</span>
+                <span>Web Development</span>
+                <span>Software</span>
                 <span>SEO</span>
-                <span>Analytics</span>
-
-                <span>CRO</span>
               </div>
 
               <div className="footer-socials">
@@ -130,30 +126,11 @@ export default function Footer() {
             <div className="footer-col">
               <h3 className="footer-col-title">Support</h3>
               <nav className="footer-links" aria-label="Support Links">
-                {supportLinks.map((item) =>
-                  item.external ? (
-                    <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" className="footer-link">
-                      {item.label}
-                    </a>
-                  ) : (
-                    <Link key={item.label} href={item.href} className="footer-link">
-                      {item.label}
-                    </Link>
-                  )
-                )}
-                {/*
-                  NOTE: "SEO Report Generator" is intentionally rendered as a
-                  plain <a> above (via the `external: true` branch), not a
-                  Next.js <Link>. It lives at /seo-report-generator/ as a
-                  separate, pre-existing asset on the production server
-                  (see public/.htaccess, which explicitly preserves it) and
-                  is not part of this Next.js app's routes. Using <Link>
-                  here would trigger Next's client-side router, which has no
-                  matching route and would 404 inside the SPA even though
-                  the real file exists on the server. Confirm this page is
-                  still live before deployment — see
-                  BLOCKED-USER-INPUT.md.
-                */}
+                {supportLinks.map((item) => (
+                  <Link key={item.label} href={item.href} className="footer-link">
+                    {item.label}
+                  </Link>
+                ))}
               </nav>
             </div>
 
@@ -181,7 +158,7 @@ export default function Footer() {
 
           <div className="footer-bottom">
             <p>
-              © {new Date().getFullYear()} Walid Hasan. Web Design  ·  Analytics  ·  Conversion Optimization
+              © {new Date().getFullYear()} Walid Hasan. Website Design  ·  Development  ·  Software  ·  SEO
             </p>
 
             <div className="footer-legal-links">

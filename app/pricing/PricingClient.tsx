@@ -137,77 +137,6 @@ const localSeoPackages = [
     },
 ]
 
-const ecommerceSeoPackages = [
-    {
-        name: 'Ecommerce Starter',
-        price: '$799',
-        period: '/month',
-        label: 'For small ecommerce stores',
-        bestFor:
-            'Best for small Shopify, WooCommerce, or ecommerce stores that need SEO foundations.',
-        timeline: 'Recommended timeline: 3 months minimum',
-        scope: 'Focuses on selected priority collections, categories, and products',
-        note:
-            'Bulk product SEO, advanced technical fixes, or large-scale collection copy are not included by default.',
-        features: [
-            'Technical SEO audit',
-            'Priority category/collection SEO',
-            'Selected product SEO recommendations',
-            'Keyword research',
-            'Meta title and description optimization',
-            'Search Console monitoring',
-            'Basic internal linking recommendations',
-            'Monthly SEO report',
-        ],
-    },
-    {
-        name: 'Ecommerce Growth',
-        price: '$1,200',
-        period: '/month',
-        label: 'For category and product growth',
-        bestFor:
-            'Best for growing ecommerce stores that want stronger category, collection, and product rankings.',
-        timeline: 'Recommended timeline: 3–6 months',
-        scope:
-            'Focuses on priority category architecture, selected product SEO, and technical improvements',
-        note:
-            'Additional products, collections, copywriting, or complex technical fixes may require add-on pricing.',
-        featured: true,
-        features: [
-            'Everything in Ecommerce Starter',
-            'Category/collection page optimization',
-            'Product page SEO for selected products',
-            'Internal linking strategy',
-            'Content recommendations',
-            'Technical SEO fixes',
-            'Schema recommendations',
-            'Conversion improvement suggestions',
-            'Monthly growth report',
-        ],
-    },
-    {
-        name: 'Ecommerce Authority',
-        price: '$1,800',
-        period: '/month',
-        label: 'For larger competitive stores',
-        bestFor:
-            'Best for larger stores, competitive ecommerce niches, or stores with many collections/products.',
-        timeline: 'Recommended timeline: 6 months+',
-        scope: 'Focuses on advanced SEO strategy, technical structure, and ongoing ecommerce growth',
-        note:
-            'Large-scale product SEO, faceted navigation issues, advanced schema, and complex technical fixes may require a custom quote.',
-        features: [
-            'Everything in Ecommerce Growth',
-            'Advanced technical SEO',
-            'Large-scale product SEO strategy',
-            'Collection architecture improvement',
-            'SEO content planning',
-            'CRO recommendations',
-            'Ongoing performance monitoring',
-            'Priority support',
-        ],
-    },
-]
 
 const localSeoFaqs = [
     {
@@ -244,53 +173,8 @@ const localSeoFaqs = [
     },
 ]
 
-const ecommerceSeoFaqs = [
-    {
-        q: 'How long does Ecommerce SEO take?',
-        a: 'Ecommerce SEO usually takes 3–6 months to show stronger improvements, and competitive stores may need 6–12 months for meaningful category and product ranking growth.',
-    },
-    {
-        q: 'Is Ecommerce SEO ongoing?',
-        a: 'Yes. Ecommerce SEO should be ongoing because stores constantly add products, categories, collections, content, and technical changes. Competitors also keep optimizing.',
-    },
-    {
-        q: 'Do you optimize product pages?',
-        a: 'Yes, but packages focus on selected priority products. Large-scale product SEO or bulk optimization may require add-on pricing depending on the number of products.',
-    },
-    {
-        q: 'Do you optimize collection/category pages?',
-        a: 'Yes. Collection and category pages are usually the most important ecommerce SEO pages because they target commercial keywords and drive qualified buying traffic.',
-    },
-    {
-        q: 'Is product SEO included for every product?',
-        a: 'No. Optimizing every product is not included by default for large stores. Priority products are selected first, and additional product SEO can be added if needed.',
-    },
-    {
-        q: 'Do you handle Shopify SEO?',
-        a: 'Yes. I can work with Shopify SEO, including collection optimization, product SEO, technical SEO, metadata, internal linking, and ecommerce conversion recommendations.',
-    },
-    {
-        q: 'What affects Ecommerce SEO pricing?',
-        a: 'Pricing depends on store size, number of products, number of collections, technical issues, platform, competition level, content needs, and how much optimization is required.',
-    },
-    {
-        q: 'Can Ecommerce SEO improve sales?',
-        a: 'SEO can increase qualified organic traffic and improve product/category visibility. Sales also depend on product quality, pricing, trust, UX, conversion rate, and offer strength.',
-    },
-]
-
 export default function PricingClient() {
-    const [seoTab, setSeoTab] = useState<'local' | 'ecommerce'>('local')
-    const [faqTab, setFaqTab] = useState<'local' | 'ecommerce'>('local')
     const [activeFaq, setActiveFaq] = useState<number | null>(0)
-
-    const activeSeoPackages = seoTab === 'local' ? localSeoPackages : ecommerceSeoPackages
-    const activeFaqs = faqTab === 'local' ? localSeoFaqs : ecommerceSeoFaqs
-
-    const handleFaqTabChange = (tab: 'local' | 'ecommerce') => {
-        setFaqTab(tab)
-        setActiveFaq(0)
-    }
 
     return (
         <div className="pricing-page">
@@ -304,17 +188,17 @@ export default function PricingClient() {
                     <div className="pricing-hero-content">
                         <div className="pricing-kicker">
                             <span className="pricing-kicker-dot" />
-                            Personal Consultant Pricing
+                            Starting prices
                         </div>
 
                         <h1>
-                            Growth-Focused Pricing for{' '}
-                            <span className="text-gradient">Websites & SEO</span>
+                            Website and SEO pricing,{' '}
+                            <span className="text-gradient">software quoted separately</span>
                         </h1>
 
                         <p>
-                            Transparent starting prices for premium website design, local SEO,
-                            Google Business Profile optimization, and ecommerce SEO growth.
+                            Published starting prices for website builds and local SEO, including
+                            Google Business Profile. Custom software does not have a package price.
                         </p>
 
                         <div className="pricing-hero-actions">
@@ -343,12 +227,12 @@ export default function PricingClient() {
                             <strong>$499/mo</strong>
                         </div>
                         <div className="pricing-mini-row">
-                            <span>Ecommerce SEO</span>
-                            <strong>$799/mo</strong>
+                            <span>Software</span>
+                            <strong>Custom quote</strong>
                         </div>
 
                         <div className="pricing-mini-note">
-                            Lower than agency pricing. Built for personal consulting clients.
+                            Website and SEO figures are starting prices. Software is scoped per project.
                         </div>
                     </div>
                 </div>
@@ -401,38 +285,41 @@ export default function PricingClient() {
                 </div>
             </section>
 
+            <section className="pricing-note-section">
+                <div className="container">
+                    <div className="pricing-note-card">
+                        <div>
+                            <span>Software Development</span>
+                            <h2>Custom tools are quoted per project.</h2>
+                            <p>
+                                Browser extensions and workflow tools, such as RFQ AutoPilot, do not
+                                have a public package price. Scope, integrations, and timeline are
+                                agreed before work starts.
+                            </p>
+                        </div>
+
+                        <Link href="/book" className="btn btn-brand">
+                            Discuss a software project <span className="arrow">→</span>
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
             <section className="pricing-section seo-pricing-section">
                 <div className="container">
                     <div className="pricing-section-header center">
-                        <div className="sec-label">SEO Growth</div>
+                        <div className="sec-label">SEO Services</div>
                         <h2 className="sec-title">
-                            SEO Pricing for <span className="text-gradient">Local & Ecommerce</span>
+                            SEO plans for <span className="text-gradient">search and local visibility</span>
                         </h2>
                         <p className="sec-desc">
-                            Choose between Local SEO with Google Business Profile optimization
-                            or Ecommerce SEO for product and collection growth.
+                            Monthly plans focused on local SEO and Google Business Profile.
+                            Technical and on-page work is included in the plan you choose.
                         </p>
                     </div>
 
-                    <div className="pricing-tabs" role="tablist" aria-label="SEO pricing tabs">
-                        <button
-                            type="button"
-                            className={seoTab === 'local' ? 'active' : ''}
-                            onClick={() => setSeoTab('local')}
-                        >
-                            Local SEO + GBP
-                        </button>
-                        <button
-                            type="button"
-                            className={seoTab === 'ecommerce' ? 'active' : ''}
-                            onClick={() => setSeoTab('ecommerce')}
-                        >
-                            Ecommerce SEO
-                        </button>
-                    </div>
-
                     <div className="pricing-grid seo-grid">
-                        {activeSeoPackages.map((pkg) => (
+                        {localSeoPackages.map((pkg) => (
                             <article
                                 className={`pricing-card seo-card ${pkg.featured ? 'featured' : ''}`}
                                 key={pkg.name}
@@ -502,8 +389,7 @@ export default function PricingClient() {
                             Frequently Asked <span className="text-gradient">SEO Questions</span>
                         </h2>
                         <p className="sec-desc">
-                            Clear answers about Local SEO, Ecommerce SEO, ranking timelines, monthly service
-                            scope, and add-on work.
+                            Timelines, Google Business Profile, city pages, and what the monthly SEO plans include.
                         </p>
                     </div>
 
@@ -512,21 +398,15 @@ export default function PricingClient() {
                             <div className="pricing-faq-visual-glow" />
 
                             <div className="pricing-faq-big-icon" aria-hidden="true">
-                                {faqTab === 'local' ? '📍' : '🛒'}
+                                📍
                             </div>
 
-                            <span>{faqTab === 'local' ? 'Local SEO FAQ' : 'Ecommerce SEO FAQ'}</span>
+                            <span>SEO FAQ</span>
 
-                            <h3>
-                                {faqTab === 'local'
-                                    ? 'Questions about ranking in your local market?'
-                                    : 'Questions about growing product and category visibility?'}
-                            </h3>
+                            <h3>Questions about local search and the business profile</h3>
 
                             <p>
-                                {faqTab === 'local'
-                                    ? 'Understand timelines, GBP optimization, city landing pages, and monthly local SEO scope.'
-                                    : 'Understand product SEO, collection optimization, store size, technical SEO, and ongoing ecommerce growth.'}
+                                Timelines, Google Business Profile, city pages, and what a monthly SEO plan covers.
                             </p>
 
                             <div className="pricing-faq-mini-stats">
@@ -542,25 +422,8 @@ export default function PricingClient() {
                         </div>
 
                         <div className="pricing-faq-content">
-                            <div className="pricing-faq-tabs" role="tablist" aria-label="SEO FAQ tabs">
-                                <button
-                                    type="button"
-                                    className={faqTab === 'local' ? 'active' : ''}
-                                    onClick={() => handleFaqTabChange('local')}
-                                >
-                                    Local SEO FAQ
-                                </button>
-                                <button
-                                    type="button"
-                                    className={faqTab === 'ecommerce' ? 'active' : ''}
-                                    onClick={() => handleFaqTabChange('ecommerce')}
-                                >
-                                    Ecommerce SEO FAQ
-                                </button>
-                            </div>
-
                             <div className="pricing-faq-accordion">
-                                {activeFaqs.map((faq, index) => {
+                                {localSeoFaqs.map((faq, index) => {
                                     const isOpen = activeFaq === index
 
                                     return (
