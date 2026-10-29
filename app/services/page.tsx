@@ -2,9 +2,9 @@ import Services from '@/views/Services'
 import { pageMetadata } from '@/lib/seo'
 
 export const metadata = pageMetadata({
-  title: 'Services — Web Design, SEO & Digital Growth',
+  title: 'Services — Website Design, Development, Software & SEO',
   description:
-    'Web design and development, SEO strategy, local SEO and Google Business Profile, GA4 analytics, lead generation and conversion optimization — delivered by Walid Hasan.',
+    'Four services from Walid Hasan: website design, web development, custom software, and SEO including technical, on-page, and local search.',
   path: '/services',
 })
 

@@ -60,7 +60,7 @@
 .trust-chip:hover{border-color:var(--brand-500);color:var(--text-primary);transform:scale(1.04);box-shadow:0 4px 20px rgba(37,99,235,0.15)}
 
 /* Service cards */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 .srv-card{padding:32px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-md);position:relative;overflow:hidden;transition:all .5s cubic-bezier(.4,0,.2,1);cursor:default}
 .srv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gradient-brand);transform:scaleX(0);transform-origin:left;transition:transform .5s}
 .srv-card:hover::before{transform:scaleX(1)}
@@ -85,7 +85,7 @@
 .why-item p{font-size:.84rem;color:var(--text-secondary);line-height:1.65}
 
 /* Results */
-.results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .res-card{text-align:center;padding:32px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-md);transition:all .4s}
 .res-card:hover{border-color:var(--border-hover);transform:translateY(-6px);box-shadow:var(--shadow-card)}
 .res-num{font-family:var(--font-heading);font-size:2rem;font-weight:800;background:var(--gradient-brand);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
@@ -97,6 +97,10 @@
 .pf-card:hover{border-color:var(--border-hover);box-shadow:var(--shadow-card)}
 .pf-thumb{position:relative;overflow:hidden;aspect-ratio:16/10}
 .pf-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.pf-fallback{width:100%;height:100%;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;padding:20px;background:radial-gradient(ellipse 90% 80% at 15% 0%,rgba(37,99,235,0.42),transparent 58%),linear-gradient(165deg,#10182f 0%,#070b16 72%)}
+.pf-fallback strong{font-family:var(--font-heading);font-size:1.15rem;font-weight:700;letter-spacing:-.2px}
+.pf-fallback span{font-size:.75rem;color:var(--text-muted);font-family:var(--font-mono)}
+.pf-live{display:inline-flex;margin-top:12px;color:var(--brand-500);font-size:.8rem;font-weight:600}
 .pf-card:hover .pf-thumb img{transform:scale(1.04)}
 .pf-overlay{position:absolute;inset:0;background:rgba(6,6,17,0.7);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .4s}
 .pf-card:hover .pf-overlay{opacity:1}
@@ -168,6 +172,15 @@
 .cta-inner h2{font-family:var(--font-heading);font-size:clamp(2rem,3.8vw,2.8rem);font-weight:700;letter-spacing:-.5px;margin-bottom:16px}
 .cta-inner p{font-size:1.02rem;color:var(--text-secondary);margin-bottom:36px;line-height:1.8}
 .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta-contacts{display:flex;gap:10px 22px;justify-content:center;flex-wrap:wrap;margin:-8px 0 28px}
+.cta-contacts a{color:var(--brand-500);font-weight:600;font-size:.95rem}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.proof-card{padding:28px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--r-md);transition:all .4s}
+.proof-card:hover{border-color:var(--border-hover);transform:translateY(-6px);box-shadow:var(--shadow-card)}
+.proof-card h3{font-family:var(--font-heading);font-size:1.05rem;font-weight:700;margin-bottom:8px}
+.proof-card p{font-size:.88rem;color:var(--text-secondary);line-height:1.7;margin-bottom:14px}
+.credibility-line{max-width:720px;margin:28px auto 0;text-align:center;font-size:.92rem;color:var(--text-secondary);line-height:1.7}
+.credibility-line a{color:var(--brand-500);font-weight:600}
 
 /* Responsive */
 @media(max-width:1080px){
@@ -176,13 +189,13 @@
   .hero-ctas{justify-content:center}
   .hero-stats{justify-content:center}
   .hero-visual{max-width:360px;margin:40px auto 0}
-  .services-grid,.pf-grid,.testi-grid{grid-template-columns:repeat(2,1fr)}
+  .services-grid,.pf-grid,.testi-grid,.proof-grid{grid-template-columns:repeat(2,1fr)}
   .results-grid,.proc-track{grid-template-columns:repeat(2,1fr)}
   .proc-track::before{display:none}
   .prod-grid{grid-template-columns:1fr}
 }
 @media(max-width:768px){
-  .services-grid,.pf-grid,.testi-grid,.results-grid,.proc-track{grid-template-columns:1fr}
+  .services-grid,.pf-grid,.testi-grid,.results-grid,.proc-track,.proof-grid{grid-template-columns:1fr}
   .why-grid{grid-template-columns:1fr}
   .hero{padding:120px 0 70px}
   .hero-stats{flex-wrap:wrap;gap:20px}

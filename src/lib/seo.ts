@@ -19,10 +19,10 @@ import { SITE_URL } from '@/lib/schema'
  */
 
 export const OG_IMAGE = {
-  url: '/assets/og-default.png',
+  url: '/assets/og-default.jpg',
   width: 1200,
   height: 630,
-  alt: 'Walid Hasan — Digital Growth Consultant, founder of Inoviqa LLC',
+  alt: 'Walid Hasan — Web Designer, Developer & SEO Specialist',
 }
 
 type PageMetaInput = {

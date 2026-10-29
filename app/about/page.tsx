@@ -4,10 +4,10 @@ import { pageMetadata } from '@/lib/seo'
 import { profilePageSchema } from '@/lib/schema'
 
 export const metadata = pageMetadata({
-  title: 'About Walid Hasan — Consultant & Agency Founder',
-  socialTitle: 'About Walid Hasan — Digital Growth Consultant & Agency Founder',
+  title: 'About Walid Hasan — Designer, Developer & SEO',
+  socialTitle: 'About Walid Hasan — Web Designer, Developer & SEO Specialist',
   description:
-    'Walid Hasan is a digital growth consultant and founder of Inoviqa LLC, working on web design, SEO, analytics and conversion optimization since 2017.',
+    'Walid Hasan is a web designer, developer, and SEO specialist. Since 2017 he has built websites, custom software, and SEO systems for client businesses.',
   path: '/about',
   ogType: 'profile',
 })

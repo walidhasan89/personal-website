@@ -4,7 +4,7 @@ import { pageMetadata } from '@/lib/seo'
 export const metadata = pageMetadata({
   title: 'Contact Walid Hasan',
   description:
-    'Get in touch with Walid Hasan about web design, SEO, analytics and digital growth work. Typical response time is under 24 hours.',
+    'Contact Walid Hasan about website design, web development, custom software, or SEO. Email hello@walidhasan.com or WhatsApp +880 177 434 0932.',
   path: '/contact',
 })
 

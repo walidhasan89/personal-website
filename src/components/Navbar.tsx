@@ -8,9 +8,9 @@ import { useTheme } from '@/context/ThemeContext'
 const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
-  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Work', href: '/work' },
   { label: 'About', href: '/about' },
-  { label: 'Tools', href: '/tools' },
+  { label: 'Pricing', href: '/pricing' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -93,7 +93,7 @@ export default function Navbar() {
         <nav className="navbar" aria-label="Main navigation">
           <Link href="/" className="nav-logo" aria-label="Walid Hasan Home">
             <img
-              src="/assets/walidhasan-logo.png"
+              src="/assets/walidhasan-logo.webp"
               alt="Walid Hasan"
               width={38}
               height={38}
@@ -168,7 +168,7 @@ export default function Navbar() {
             </button>
 
             <Link href="/book" className="nav-cta">
-              Book Consultation
+              Book
             </Link>
 
             <button
@@ -230,7 +230,7 @@ export default function Navbar() {
               className="btn btn-brand"
               onClick={() => setIsOpen(false)}
             >
-              Book Consultation <span className="arrow">→</span>
+              Book a Call <span className="arrow">→</span>
             </Link>
           </div>
         </div>

@@ -8,7 +8,6 @@ import '@/styles/home.css'
 import '@/styles/privacy.css'
 import '@/styles/terms.css'
 import '@/styles/pricing.css'
-import '@/styles/niche.css'
 
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -25,9 +24,9 @@ const siteUrl = 'https://walidhasan.com'
 // Kept under ~60 characters so it is not truncated in Google results. Name
 // and role are front-loaded because branded/entity queries are the primary
 // target for this site (see docs/KEYWORD-STRATEGY.md).
-const homeTitle = 'Walid Hasan — Digital Growth Consultant, Web Design & SEO'
+const homeTitle = 'Walid Hasan — Web Designer, Developer & SEO Specialist'
 const homeDescription =
-  'Walid Hasan is a digital growth consultant and founder of Inoviqa LLC, building websites, SEO and analytics systems that turn search visibility into qualified leads.'
+  'Walid Hasan designs and builds websites, custom software, and SEO systems for businesses that need a clear online presence and measurable leads.'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -53,8 +52,8 @@ export const metadata: Metadata = {
     images: [OG_IMAGE.url],
   },
   icons: {
-    icon: '/assets/walidhasan-logo.png',
-    apple: '/assets/walidhasan-logo.png',
+    icon: [{ url: '/assets/favicon.png', sizes: '48x48', type: 'image/png' }],
+    apple: [{ url: '/assets/apple-touch-icon.jpg', sizes: '180x180', type: 'image/jpeg' }],
   },
 }
 

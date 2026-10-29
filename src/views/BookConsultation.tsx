@@ -42,8 +42,8 @@ const css = `
 `
 
 const INFO_CARDS = [
-  { icon: '\u23F1\uFE0F', title: '30 Minute Call', desc: 'Focused strategy session to understand your business goals and growth challenges.' },
-  { icon: '\uD83C\uDFAF', title: 'Custom Strategy', desc: 'Walk away with actionable insights tailored specifically to your business.' },
+  { icon: '\u23F1\uFE0F', title: '30 Minute Call', desc: 'Enough time to understand the business and whether a website, tool, or SEO engagement is the right job.' },
+  { icon: '\uD83C\uDFAF', title: 'A clear next step', desc: 'You leave with a recommendation on scope, not a generic pitch deck.' },
   { icon: '\uD83D\uDC8E', title: '100% Free', desc: 'No obligation, no pressure. Just genuine value and strategic thinking.' },
   { icon: '\u26A1', title: 'Fast Booking', desc: "Pick a time that works for you. I'll confirm within hours." },
 ]
@@ -72,9 +72,9 @@ export default function BookConsultation() {
         <div className="orb orb-1" /><div className="orb orb-2" />
         <Breadcrumbs items={[{ name: 'Book a Call', path: '/book' }]} />
         <div className="container book-hero-inner">
-          <div className="sec-label reveal">Free Strategy Call</div>
-          <h1 className="reveal">Book Your Free <span className="text-gradient">Growth Consultation</span></h1>
-          <p className="book-hero-sub reveal">Pick a time that works for you. In 30 minutes, we'll map out a custom digital growth strategy for your business — no strings attached.</p>
+          <div className="sec-label reveal">Book a call</div>
+          <h1 className="reveal">Book a call about the <span className="text-gradient">project</span></h1>
+          <p className="book-hero-sub reveal">Thirty minutes on a website, a custom tool, or SEO. No obligation. Bring the URL if you already have one.</p>
           <div className="book-hero-trust reveal">
             <span className="book-trust-item"><span className="book-trust-icon">&#10003;</span> No Obligation</span>
             <span className="book-trust-item"><span className="book-trust-icon">&#10003;</span> 30 Min Call</span>
@@ -119,7 +119,7 @@ export default function BookConsultation() {
             <p className="reveal">If you'd rather share project details in writing, use the contact form and I'll respond within 24 hours.</p>
             <div className="cta-btns reveal">
               <Link href="/contact" className="btn btn-brand">Send an Inquiry <span className="arrow">&#8594;</span></Link>
-              <Link href="/case-studies" className="btn btn-ghost">View Case Studies</Link>
+              <Link href="/work" className="btn btn-ghost">See the Work</Link>
             </div>
           </div>
         </div>

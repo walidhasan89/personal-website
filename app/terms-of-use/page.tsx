@@ -13,7 +13,7 @@ const sections = [
   {
     title: '1. Website Owner',
     body: [
-      'This website is operated by Walid Hasan, a digital growth consultant offering services related to web design, SEO, analytics, conversion optimization, lead generation, website audits, and digital strategy.',
+      'This website is operated by Walid Hasan, offering website design, web development, software development, and SEO services.',
       'For questions, contact: walid@inoviqa.com',
     ],
   },

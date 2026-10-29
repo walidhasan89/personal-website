@@ -224,7 +224,7 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 860px) {
+@media (max-width: 1080px) {
   .nav-links { display: none; }
   .hamburger { display: flex; }
   .nav-cta { display: none; }

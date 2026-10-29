@@ -13,6 +13,19 @@ RewriteCond %{HTTP_HOST} ^www\.walidhasan\.com$ [NC]
 RewriteRule ^(.*)$ https://walidhasan.com/$1 [L,R=301]
 
 # ─────────────────────────────────────────────────────────────
+# 1b. RETIRED PUBLIC URLS
+#
+# These rules run before the "existing file or directory" passthrough so
+# folders that still exist on the Hostinger server (the old tools, the
+# epoxy landing page, and the standalone generators) are redirected too.
+# ─────────────────────────────────────────────────────────────
+RewriteRule ^tools(\.html)?/?$ /services [R=301,L]
+RewriteRule ^epoxy-flooring-marketing(\.html)?/?$ /services [R=301,L]
+RewriteRule ^seo-report-generator(\.html)?/?$ /services [R=301,L]
+RewriteRule ^invoice-builder(\.html)?/?$ /services [R=301,L]
+RewriteRule ^case-studies(\.html)?/?$ /work [R=301,L]
+
+# ─────────────────────────────────────────────────────────────
 # 2. CANONICAL URL FORM (duplicate-content prevention)
 #
 # The Next.js export is configured with trailingSlash: false, so /about is
@@ -33,7 +46,7 @@ RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
 RewriteRule ^ /%1 [L,R=301]
 
 # 2b. Strip trailing slashes (except on the site root and on real
-#     directories, which must keep theirs — e.g. /seo-report-generator/).
+#     directories, which must keep theirs).
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ /$1 [L,R=301]
 
@@ -42,8 +55,9 @@ RewriteRule ^(.+)/$ /$1 [L,R=301]
 # ─────────────────────────────────────────────────────────────
 
 # Keep existing real files and folders working.
-# Important for /seo-report-generator/ and /contact-handler.php, which live
-# on the server outside the Next.js build.
+# Important for /contact-handler.php, which lives on the server outside
+# the Next.js build. Retired marketing URLs are redirected in section 1b
+# before this passthrough can serve an old folder.
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]

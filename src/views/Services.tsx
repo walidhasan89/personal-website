@@ -113,46 +113,92 @@ const css = `
 }
 `
 
-const SERVICES = [
-  { id:'web',icon:'🎨',label:'Core Service',title:'Website Design & Development',desc:'Your website is your most powerful sales asset. I design and develop high-converting WordPress websites that don\'t just look premium — they generate leads.',desc2:'Every site is built with conversion architecture, SEO foundations, and performance optimization from day one.',features:['Custom WordPress & Elementor design','Conversion-optimized page architecture','Mobile-first responsive development','Speed & Core Web Vitals optimization','SEO-ready structure from day one','Lead capture & CTA strategy'],metrics:[{num:'300+',label:'Sites Built'},{num:'2-4',label:'Week Delivery'},{num:'95+',label:'PageSpeed Score'},{num:'3x',label:'Avg Lead Increase'}],bar:{label:'PageSpeed Score',value:95},lines:[{text:'Conversion-optimized architecture',dot:''},{text:'Mobile-first responsive design',dot:'cyan'},{text:'Core Web Vitals optimized',dot:'gold'}] },
-  { id:'seo',icon:'📈',label:'Growth Engine',title:'SEO Strategy & Execution',desc:'Search engine optimization isn\'t about stuffing keywords. It\'s about building a systematic organic growth engine that compounds over time.',desc2:'I deliver comprehensive SEO strategies covering on-page, technical SEO, content architecture, and link building.',features:['Comprehensive SEO audit & strategy','On-page optimization & content strategy','Technical SEO & site architecture','Keyword research & competitor analysis','Monthly reporting & performance tracking','Ongoing optimization & iteration'],metrics:[{num:'96%',label:'Client Retention'},{num:'60-90',label:'Days to Results'},{num:'200%',label:'Avg Traffic Growth'},{num:'500+',label:'Keywords Ranked'}],reverse:true,bar:{label:'Client Retention',value:96},lines:[{text:'Organic traffic compounding monthly',dot:''},{text:'Keyword rankings climbing steadily',dot:'cyan'},{text:'Domain authority growing',dot:'gold'}] },
-  { id:'local',icon:'📍',label:'Local Domination',title:'Local SEO & Google Business Profile',desc:'For local businesses, Google Maps and local search are where customers find you.',desc2:'From GBP optimization to local citation building, review strategy, and geo-targeted content.',features:['Google Business Profile optimization','Local citation building & NAP consistency','Review generation strategy','Local keyword targeting','Geo-targeted landing pages','Local link building & outreach'],metrics:[{num:'#1',label:'Map Pack Rankings'},{num:'5x',label:'Calls Increase'},{num:'90',label:'Day Avg Results'},{num:'150+',label:'Local Projects'}],bar:{label:'Map Pack Ranking Rate',value:92},lines:[{text:'Google Maps visibility maximized',dot:''},{text:'Local citations fully consistent',dot:'cyan'},{text:'Review generation automated',dot:'gold'}] },
-  { id:'analytics',icon:'📊',label:'Data Intelligence',title:'Web Analytics & Conversion Tracking',desc:'You can\'t improve what you can\'t measure. I set up advanced analytics and conversion tracking.',desc2:'From GA4 and Tag Manager to server-side tracking, Meta Pixel, and Google Ads conversion tracking.',features:['Google Analytics 4 setup','Google Tag Manager implementation','Server-side tracking setup','Meta Pixel & Google Ads tracking','Custom conversion tracking','Reporting dashboards & insights'],metrics:[{num:'100%',label:'Data Accuracy'},{num:'GA4',label:'Certified Setup'},{num:'24hr',label:'Setup Time'},{num:'50+',label:'Tracking Projects'}],reverse:true,bar:{label:'Data Accuracy',value:100},lines:[{text:'Every conversion tracked precisely',dot:''},{text:'Real-time reporting dashboards',dot:'cyan'},{text:'Server-side tracking enabled',dot:'gold'}] },
-  { id:'lead',icon:'🚀',label:'Revenue Driver',title:'Lead Generation Strategy',desc:'End-to-end lead generation systems combining landing pages, SEO funnels, and conversion optimization.',desc2:'Real, qualified business inquiries from people ready to buy — delivered through organic channels.',features:['Landing page design & optimization','SEO funnel architecture','Lead magnet strategy','Form optimization & A/B testing','CRM integration & automation','Conversion rate optimization'],metrics:[{num:'40+',label:'Leads/Month Avg'},{num:'3x',label:'ROI Improvement'},{num:'65%',label:'Cost Reduction'},{num:'200+',label:'Funnels Built'}],bar:{label:'Pipeline Conversion',value:88},lines:[{text:'Qualified leads flowing predictably',dot:''},{text:'Funnel stages optimized',dot:'cyan'},{text:'CRM automation connected',dot:'gold'}] },
-  { id:'cro',icon:'⚡',label:'Profit Multiplier',title:'Conversion Rate Optimization',desc:'The fastest way to grow revenue isn\'t more traffic — it\'s converting more of the traffic you already have.',desc2:'Through heatmap analysis, user behavior tracking, A/B testing, and strategic UX improvements.',features:['Heatmap & behavior analysis','A/B and multivariate testing','UX & UI optimization','Form & CTA optimization','Page speed improvement','Checkout & funnel optimization'],metrics:[{num:'45%',label:'Avg Conversion Lift'},{num:'2x',label:'Revenue Growth'},{num:'100+',label:'Tests Run'},{num:'30+',label:'CRO Projects'}],reverse:true,bar:{label:'Avg Conversion Lift',value:85},lines:[{text:'A/B tests running continuously',dot:''},{text:'User behavior patterns analyzed',dot:'cyan'},{text:'Revenue per visitor increasing',dot:'gold'}] },
-]
+type Service = {
+  id: string
+  icon: string
+  label: string
+  title: string
+  desc: string
+  desc2: string
+  features: string[]
+  lines: { text: string; dot: string }[]
+  reverse?: boolean
+}
 
-const PACKAGES = [
-  { badge:'Starter',title:'Growth Foundation',desc:'Perfect for businesses that need a professional online presence with SEO-ready foundations.',features:['Custom WordPress website (up to 5 pages)','Mobile-responsive design','Basic on-page SEO setup','Contact form & lead capture','Google Analytics integration','Speed optimization','2 weeks delivery'] },
-  { badge:'Most Popular',badgeType:'pop',title:'Growth Accelerator',desc:'The complete package for businesses serious about organic growth.',features:['Custom WordPress website (up to 12 pages)','Conversion-optimized design','Full SEO audit & strategy','Google Business Profile optimization','Advanced analytics & tracking setup','Lead generation system','CRO recommendations','4 weeks delivery + 30-day support'],featured:true },
-  { badge:'Enterprise',title:'Growth Partner',desc:'Ongoing strategic partnership for compounding digital growth.',features:['Everything in Growth Accelerator','Monthly SEO retainer','Ongoing conversion optimization','Content strategy & optimization','Monthly reporting & strategy calls','Priority support & updates','Server-side tracking setup','Dedicated growth consultant'] },
+const SERVICES: Service[] = [
+  {
+    id: 'website-design',
+    icon: '🎨',
+    label: 'Website Design',
+    title: 'Website Design',
+    desc: 'A clean, conversion-focused site that explains the offer and gives the right visitor an obvious next step.',
+    desc2: 'The design work covers the page structure, the writing hierarchy, and the calls to action. It is paired with the build, not sold as a picture that someone else has to implement.',
+    features: ['Page structure around the offer', 'Conversion-focused layout', 'Mobile layout', 'Clear calls to action', 'Service and about pages', 'A contact path that is easy to find'],
+    lines: [
+      { text: 'The page says what you do', dot: '' },
+      { text: 'The next step is obvious', dot: 'cyan' },
+      { text: 'It still reads well on a phone', dot: 'gold' },
+    ],
+  },
+  {
+    id: 'web-development',
+    icon: '💻',
+    label: 'Web Development',
+    title: 'Web Development',
+    desc: 'Fast, reliable WordPress and custom builds, including forms, tracking, and mobile performance.',
+    desc2: 'Analytics and conversion details live here: forms that arrive in your inbox, basic tracking, and a site that does not fall apart on a slow connection.',
+    features: ['WordPress or a custom build', 'Forms and lead capture', 'Basic analytics and tracking', 'Speed and mobile performance', 'SEO-ready structure', 'Launch support'],
+    reverse: true,
+    lines: [
+      { text: 'Forms and tracking included', dot: '' },
+      { text: 'Built to stay fast on mobile', dot: 'cyan' },
+      { text: 'Ready for the SEO work', dot: 'gold' },
+    ],
+  },
+  {
+    id: 'software-development',
+    icon: '🛠️',
+    label: 'Software Development',
+    title: 'Software Development',
+    desc: 'Custom tools and browser extensions that automate a workflow you already run by hand.',
+    desc2: 'RFQ AutoPilot is the public example: a tool for procurement teams that takes request-for-quote work out of repetitive manual steps. Other tools are scoped the same way, around one real process.',
+    features: ['Workflow mapped before code', 'Custom tools or browser extensions', 'A focused first version', 'Handover you can actually use', 'Room to extend after launch', 'Quoted per project'],
+    lines: [
+      { text: 'Built around one real workflow', dot: '' },
+      { text: 'RFQ AutoPilot is a live example', dot: 'cyan' },
+      { text: 'Price depends on the scope', dot: 'gold' },
+    ],
+  },
+  {
+    id: 'seo-services',
+    icon: '📈',
+    label: 'SEO Services',
+    title: 'SEO Services',
+    desc: 'Technical, on-page, and local SEO, including Google Business Profile, for businesses that want to be found by people already searching.',
+    desc2: 'This covers the foundations: indexation, page structure, titles, internal links, and the local profile. It is ongoing when the market needs it. Rankings are not guaranteed.',
+    features: ['Technical SEO fixes', 'On-page structure and metadata', 'Local SEO', 'Google Business Profile', 'Search Console monitoring', 'A plain monthly report'],
+    reverse: true,
+    lines: [
+      { text: 'Technical and on-page work', dot: '' },
+      { text: 'Local search and the business profile', dot: 'cyan' },
+      { text: 'No guaranteed ranking positions', dot: 'gold' },
+    ],
+  },
 ]
 
 const FAQS = [
-  { q:'How much does a website cost?',a:'Pricing depends on complexity, pages, and features. My projects typically range from $500 to $5,000+.' },
-  { q:'Do you work with businesses outside my country?',a:'Absolutely. I serve clients across 30+ countries with professional communication and international payment systems.' },
-  { q:'How long does SEO take to show results?',a:'Initial improvements are typically visible within 60–90 days. Significant results compound over 4–6 months.' },
-  { q:'Do you offer ongoing maintenance?',a:'Yes. I offer monthly retainers covering website maintenance, SEO optimization, analytics reporting, and strategic consulting.' },
-  { q:'What if I already have a website?',a:'I can audit your existing website, identify growth opportunities, and either optimize or recommend a strategic redesign.' },
+  { q: 'How much does a project cost?', a: 'Website and local SEO starting prices are on the pricing page. Software is scoped per project, so it does not have a public package price.' },
+  { q: 'How long does a website take?', a: 'Most website projects take about 2–4 weeks once the content and feedback are available. A larger build takes longer and is agreed up front.' },
+  { q: 'How long does SEO take?', a: 'SEO is ongoing. Early movement is often discussed around 60–90 days, and stronger results depend on the site, the competition, and how long the work continues. Exact positions are not guaranteed.' },
+  { q: 'Do you work with businesses outside your country?', a: 'Yes. Projects on this site span clients in many countries, and the working relationship is remote.' },
+  { q: 'What if I already have a website?', a: 'I can work on the site you have — design, development, tracking, or SEO — or recommend a rebuild when the current one is getting in the way.' },
 ]
 
-/**
- * One "deep dive" section per service.
- *
- * This is a separate component on purpose. It previously lived inline as
- * `SERVICES.map((s) => { const ref = useScrollReveal(); ... })`, which calls
- * a React Hook inside a loop callback — a direct violation of the Rules of
- * Hooks. It happened to work only because SERVICES has a constant length;
- * any future conditional or reordered render would have desynchronised
- * React's hook state and caused hard-to-debug runtime errors. Extracting the
- * section into its own component gives each instance its own hook scope,
- * which is the correct fix.
- */
-function ServiceDeepSection({ service: s }: { service: (typeof SERVICES)[number] }) {
+function ServiceDeepSection({ service: s }: { service: Service }) {
   const ref = useScrollReveal()
 
   return (
-    <section className="srv-deep" ref={ref}>
+    <section className="srv-deep" id={s.id} ref={ref}>
       <div className="container">
         <div className={`srv-deep-grid${s.reverse ? ' reverse' : ''}`}>
           <div className="sd-content">
@@ -161,8 +207,8 @@ function ServiceDeepSection({ service: s }: { service: (typeof SERVICES)[number]
             <p className="reveal">{s.desc}</p>
             <p className="reveal">{s.desc2}</p>
             <div className="sd-features reveal">
-              {s.features.map((f) => (
-                <div className="sd-feat" key={f}><span className="sd-feat-check">✓</span>{f}</div>
+              {s.features.map((feature) => (
+                <div className="sd-feat" key={feature}><span className="sd-feat-check">✓</span>{feature}</div>
               ))}
             </div>
             <Link href="/book" className="btn btn-brand reveal" style={{ marginTop: 20 }}>
@@ -170,24 +216,12 @@ function ServiceDeepSection({ service: s }: { service: (typeof SERVICES)[number]
             </Link>
           </div>
           <div className="sd-visual reveal">
-            <div className="sd-visual-card" aria-hidden="true">
+            <div className="sd-visual-card">
               <div className="sd-visual-icon">{s.icon}</div>
-              <div className="sd-visual-title">
-                {s.title.split(' ').slice(0, 2).join(' ')}{' '}
-                <span>{s.title.split(' ').slice(2).join(' ')}</span>
-              </div>
-              <div className="sd-visual-bar">
-                <div className="sd-visual-bar-label"><span>{s.bar.label}</span><span>{s.bar.value}%</span></div>
-                <div className="sd-visual-bar-track"><div className="sd-visual-bar-fill" style={{ width: s.bar.value + '%' }} /></div>
-              </div>
-              {s.lines.map((l, li) => (
-                <div className="sd-visual-line" key={li}><div className={`sd-visual-line-dot ${l.dot}`} />{l.text}</div>
+              <div className="sd-visual-title">{s.title}</div>
+              {s.lines.map((line) => (
+                <div className="sd-visual-line" key={line.text}><div className={`sd-visual-line-dot ${line.dot}`} />{line.text}</div>
               ))}
-              <div className="sd-metrics">
-                {s.metrics.map((m) => (
-                  <div className="sd-metric" key={m.label}><div className="sd-metric-num">{m.num}</div><div className="sd-metric-label">{m.label}</div></div>
-                ))}
-              </div>
               <div className="sd-dots">{Array.from({ length: 15 }).map((_, i) => <div className="sd-dot" key={i} />)}</div>
             </div>
           </div>
@@ -199,59 +233,33 @@ function ServiceDeepSection({ service: s }: { service: (typeof SERVICES)[number]
 
 export default function ServicesPage() {
   const heroRef = useScrollReveal()
-  const pkgRef = useScrollReveal()
   const faqRef = useScrollReveal()
   const ctaRef = useScrollReveal()
-  const [activeFaq,setActiveFaq] = useState(-1)
+  const [activeFaq, setActiveFaq] = useState(-1)
 
   return (
     <>
       <JsonLd data={faqPageSchema(FAQS)} />
-      <style
-  suppressHydrationWarning
-  dangerouslySetInnerHTML={{ __html: css }}
-/>
+      <style suppressHydrationWarning dangerouslySetInnerHTML={{ __html: css }} />
 
       <section className="srv-hero" ref={heroRef}>
         <div className="srv-hero-mesh" /><div className="orb orb-1" /><div className="orb orb-2" />
         <Breadcrumbs items={[{ name: 'Services', path: '/services' }]} />
         <div className="container srv-hero-inner">
           <div className="sec-label reveal">Services</div>
-          <h1 className="reveal">Strategic Digital Services <span className="text-gradient">Engineered for Growth</span></h1>
-          <p className="srv-hero-sub reveal">I don't sell hours. I sell outcomes. Every service is a growth system — engineered to generate leads, build authority, and drive measurable revenue.</p>
+          <h1 className="reveal">Website design, development, <span className="text-gradient">software &amp; SEO</span></h1>
+          <p className="srv-hero-sub reveal">Four services. Analytics, tracking, and conversion work are part of the build and the SEO, not extra pillars. Starting prices for websites and SEO are on the pricing page.</p>
           <div className="srv-hero-stats reveal">
-            <div className="shs"><div className="shs-num">6</div><div className="shs-label">Core Services</div></div>
-            <div className="shs"><div className="shs-num">500+</div><div className="shs-label">Projects Delivered</div></div>
+            <div className="shs"><div className="shs-num">4</div><div className="shs-label">Services</div></div>
+            <div className="shs"><div className="shs-num">7+</div><div className="shs-label">Years</div></div>
             <div className="shs"><div className="shs-num">30+</div><div className="shs-label">Countries Served</div></div>
-            <div className="shs"><div className="shs-num">98%</div><div className="shs-label">Client Satisfaction</div></div>
           </div>
         </div>
       </section>
 
-      {SERVICES.map((s) => (
-        <ServiceDeepSection key={s.id} service={s} />
+      {SERVICES.map((service) => (
+        <ServiceDeepSection key={service.id} service={service} />
       ))}
-
-      <section className="pkg-section" ref={pkgRef}>
-        <div className="container">
-          <div className="sec-header">
-            <div className="sec-label reveal">Engagement Models</div>
-            <h2 className="sec-title reveal">Choose Your <span className="text-gradient">Growth</span> Path</h2>
-            <p className="sec-desc reveal">Flexible engagement models designed for businesses at every stage.</p>
-          </div>
-          <div className="pkg-grid">
-            {PACKAGES.map(p=>(
-              <div className={`pkg-card reveal${p.featured?' featured':''}`} key={p.title}>
-                <div className={`pkg-badge${p.badgeType==='pop'?' pop':''}`}>{p.badge}</div>
-                <h3>{p.title}</h3>
-                <p>{p.desc}</p>
-                <div className="pkg-features">{p.features.map(f=><div className="pkg-feat" key={f}><span className="pkg-check">✓</span>{f}</div>)}</div>
-                <Link href="/book" className={`btn ${p.featured?'btn-brand':'btn-ghost'}`}>Get Started <span className="arrow">→</span></Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="faq-section" ref={faqRef}>
         <div className="container">
@@ -260,10 +268,10 @@ export default function ServicesPage() {
             <h2 className="sec-title reveal">Services <span className="text-gradient">FAQ</span></h2>
           </div>
           <div className="faq-list">
-            {FAQS.map((f,i)=>(
-              <div className={`faq-item${activeFaq===i?' active':''}`} key={i}>
-                <div className="faq-q" onClick={()=>setActiveFaq(activeFaq===i?-1:i)} role="button" tabIndex={0} aria-expanded={activeFaq===i} onKeyDown={(e)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();setActiveFaq(activeFaq===i?-1:i)}}}>{f.q}<span className="faq-chevron" aria-hidden="true">▾</span></div>
-                <div className="faq-a"><p>{f.a}</p></div>
+            {FAQS.map((faq, index) => (
+              <div className={`faq-item${activeFaq === index ? ' active' : ''}`} key={faq.q}>
+                <div className="faq-q" onClick={() => setActiveFaq(activeFaq === index ? -1 : index)} role="button" tabIndex={0} aria-expanded={activeFaq === index} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActiveFaq(activeFaq === index ? -1 : index) } }}>{faq.q}<span className="faq-chevron" aria-hidden="true">▾</span></div>
+                <div className="faq-a"><p>{faq.a}</p></div>
               </div>
             ))}
           </div>
@@ -273,12 +281,12 @@ export default function ServicesPage() {
       <section className="cta-section" ref={ctaRef}>
         <div className="container">
           <div className="cta-inner">
-            <div className="sec-label reveal">Ready to Grow?</div>
-            <h2 className="reveal">Let's Build Your <span className="text-gradient">Growth Engine</span></h2>
-            <p className="reveal">Stop guessing. Start growing. Book a free consultation and I'll map out a custom growth strategy.</p>
+            <div className="sec-label reveal">Next step</div>
+            <h2 className="reveal">Tell me which <span className="text-gradient">service</span> you need</h2>
+            <p className="reveal">Book a call or send the project details. If you want numbers first, the pricing page lists the website and SEO starting prices.</p>
             <div className="cta-btns reveal">
-              <Link href="/book" className="btn btn-brand">Book a Free Consultation <span className="arrow">→</span></Link>
-              <Link href="/case-studies" className="btn btn-ghost">View Case Studies</Link>
+              <Link href="/book" className="btn btn-brand">Book a Call <span className="arrow">→</span></Link>
+              <Link href="/pricing" className="btn btn-ghost">View Pricing</Link>
             </div>
           </div>
         </div>

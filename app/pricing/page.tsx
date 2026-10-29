@@ -4,7 +4,7 @@ import { pageMetadata } from '@/lib/seo'
 export const metadata = pageMetadata({
   title: 'Pricing',
   description:
-    'Transparent starting prices for website design, local SEO, Google Business Profile optimization and ecommerce SEO services by Walid Hasan.',
+    'Starting prices for Walid Hasan’s website packages and local SEO plans. Custom software is quoted per project.',
   path: '/pricing',
 })
 
